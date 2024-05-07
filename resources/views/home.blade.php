@@ -1,5 +1,6 @@
 @section('title', 'Home')
 <x-layout>
+@include('partials.nav')
 <main>
     <section>
         <div class="container">

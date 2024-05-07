@@ -9,7 +9,6 @@
     <title>RedNodo Laravel 02 | @yield('title')</title>
 </head>
 <body>
-    @include('partials.nav')
     
     {{ $slot }}
 
