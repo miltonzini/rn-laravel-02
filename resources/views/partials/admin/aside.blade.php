@@ -2,14 +2,14 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard')}}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
             <div class="sidebar-brand-text mx-3">Lucas Ferro</div>
         </a>
 
-        <li class="nav-item">
+        <li class="nav-item {{ setActiveRoute(['admin.products.index', 'admin.products.create', 'admin.products.edit']) }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#products-menu"
                 aria-expanded="true" aria-controls="products-menu">
                 <i class="fas fa-fw fa-cog"></i>
@@ -17,13 +17,13 @@
             </a>
             <div id="products-menu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.products.index')}}">Todos los productos</a>
-                    <a class="collapse-item" href="{{ route('admin.products.create')}}">Nuevo producto</a>
+                    <a class="collapse-item {{ setActiveRoute('admin.products.index') }}" href="{{ route('admin.products.index')}}">Todos los productos</a>
+                    <a class="collapse-item {{ setActiveRoute('admin.products.create') }}" href="{{ route('admin.products.create')}}">Nuevo producto</a>
                 </div>
             </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ setActiveRoute(['admin.categories.index', 'admin.categories.create', 'admin.categories.edit']) }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categories-menu"
                 aria-expanded="true" aria-controls="categories-menu">
                 <i class="fas fa-fw fa-cog"></i>
@@ -31,13 +31,13 @@
             </a>
             <div id="categories-menu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.categories.index')}}">Todas las categorías</a>
-                    <a class="collapse-item" href="{{ route('admin.categories.create')}}">Nueva categoría</a>
+                    <a class="collapse-item {{ setActiveRoute('admin.categories.index') }}" href="{{ route('admin.categories.index')}}">Todas las categorías</a>
+                    <a class="collapse-item {{ setActiveRoute('admin.categories.create') }}" href="{{ route('admin.categories.create')}}">Nueva categoría</a>
                 </div>
             </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ setActiveRoute('admin.users.index') }}">
             <a class="nav-link" href="{{ route('admin.users.index')}}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Usuarios</span>
