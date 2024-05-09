@@ -17,8 +17,8 @@
             </a>
             <div id="products-menu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="listado-productos.html">Todos los productos</a>
-                    <a class="collapse-item" href="registro-producto.html">Nuevo producto</a>
+                    <a class="collapse-item" href="{{ route('admin.products.index')}}">Todos los productos</a>
+                    <a class="collapse-item" href="{{ route('admin.products.create')}}">Nuevo producto</a>
                 </div>
             </div>
         </li>
@@ -31,14 +31,14 @@
             </a>
             <div id="categories-menu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="listado-categorias.html">Todas las categorías</a>
-                    <a class="collapse-item" href="registro-categoria.html">Nueva categoría</a>
+                    <a class="collapse-item" href="{{ route('admin.categories.index')}}">Todas las categorías</a>
+                    <a class="collapse-item" href="{{ route('admin.categories.create')}}">Nueva categoría</a>
                 </div>
             </div>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="listado-usuarios.html">
+            <a class="nav-link" href="{{ route('admin.users.index')}}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Usuarios</span>
             </a>
