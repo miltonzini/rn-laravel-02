@@ -14,37 +14,45 @@
                 @include('partials.admin.nav')
 
                 <div class="container-fluid">
+                    @if (isset($usersCount))                                            
                     <h1 class="h3 mb-2 text-gray-800">Listado de usuarios</h1>
-                    <p class="mb-4">Total registrados: 0</p>
+                    <p class="mb-4">Total registrados: {{ $usersCount }}</p>
+                    @endif
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre y apellido</th>
-                                            <th>Email</th>
-                                            <th>Fecha de registro</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Lucas Ferro</td>
-                                            <td>lucas.ferro@rednodo.com</td>
-                                            <td>02/05/2024 12:42 PM</td>
-                                            <td>
-                                                <a href="/"><i class="fa fa-edit"></i></a>
-
-                                                |
-
-                                                <a href="/"><i class="fa fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            @if (!empty($users) && count($users) > 0 )
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre y apellido</th>
+                                                <th>Email</th>
+                                                <th>Fecha de registro</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($users as $user)
+                                            <tr>
+                                                <td>{{ $user->name . ' ' . $user->surname }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->created_at }}</td>
+                                                <td>
+                                                    <a href="/"><i class="fa fa-edit"></i></a>
+                                                    |
+                                                    <a href="/"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="px-4 py-4">
+                                    <h4>No se encontraron usuarios</h4>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

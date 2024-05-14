@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {return view('home');})->name('home');
 Route::get('/login', function () {return view('login');})->name('login');
@@ -10,7 +11,7 @@ Route::get('/register', function () {return view('register');})->name('register'
 Route::prefix('admin')->group(function() {
     Route::get('/', function () {return view('admin.dashboard');})->name('dashboard');
     
-    Route::get('/users/index', function () {return view('admin.users.index');})->name('admin.users.index');
+    Route::get('/users/index', [UserController::class, 'index'])->name('admin.users.index'); // Listar usuarios
     Route::get('/users/edit', function () {return view('admin.users.edit');})->name('admin.users.edit');
     Route::get('/users/create', function () {return view('admin.users.create');})->name('admin.users.create');
     
