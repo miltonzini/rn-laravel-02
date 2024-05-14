@@ -13,4 +13,33 @@ class CategoryController extends Controller
         $scripts = ['categories.js'];
         return view('admin.categories.index', compact('categories', 'categoriesCount', 'scripts'));
     }
+    public function create() {
+        $scripts = ['categories.js'];
+        return view('admin.categories.create', compact('scripts'));
+    }
+
+    public function store(Request $request) {
+        $messages = [
+            'title.required' => 'Debes ingresar el título de la categoría',
+            'title.min' => 'El título debe tener al menos 3 caracteres',
+            'title.max' => 'El título debe tener un máximo de 50 caracteres',
+            'title.unique' => 'Ya existe una categoría con ese título',
+        ];
+        
+        $validations = $request->validate([
+           'title' => 'required|min:3|max:50|unique:categories',
+
+        ], $messages);
+
+        $title = $request->input('title');
+
+        $categoryModel = new Category();
+        $categoryModel->title = $title;
+        $categoryModel->save();
+
+        return Response()->json([
+            'success' => true, 
+            'message' => 'Categoría registrado con éxito'
+        ]);
+    }
 }

@@ -26,11 +26,12 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ route('admin.categories.store') }}" method="post" id="create-category-form">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="control-label">Categoría *</label>
-                                        <input type="text" name="category" placeholder="Categoría *" class="form-control">
+                                        <input type="text" name="title" placeholder="Categoría *" class="form-control">
                                     </div>
                                 </div>
 

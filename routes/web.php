@@ -19,11 +19,13 @@ Route::prefix('admin')->group(function() {
     
     Route::get('/categories/index', [CategoryController::class, 'index'])->name('admin.categories.index'); // Listar categorías
     Route::get('/categories/edit', function () {return view('admin.categories.edit');})->name('admin.categories.edit');
-    Route::get('/categories/create', function () {return view('admin.categories.create');})->name('admin.categories.create');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create'); // Mostrar formulario para crear categoría
+    Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store'); // Guardar categoría en la base de datos
     
     Route::get('/products/index', [ProductController::class, 'index'])->name('admin.products.index'); // Listar productos
     Route::get('/products/edit', function () {return view('admin.products.edit');})->name('admin.products.edit');
     Route::get('/products/create', function () {return view('admin.products.create');})->name('admin.products.create');
+    
     
     
     Route::get('/test', function () {return view('admin.test');})->name('admin.test');
