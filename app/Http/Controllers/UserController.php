@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     public function index() {
-        $users = User::select('id', 'name', 'surname', 'email', 'created_at')->orderBy('id', 'desc')->paginate(20);
+        $users = User::select('id', 'name', 'surname', 'email', 'created_at')->orderBy('id', 'desc')->paginate(1);
         $usersCount = User::count();
         $scripts = ['users.js'];
         return view('admin.users.index', compact('users', 'usersCount', 'scripts'));

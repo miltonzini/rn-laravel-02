@@ -48,6 +48,10 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                
+                                <div class="pagination p-4">
+                                {{ $users->links() }}
+                                <div>
                             @else
                                 <div class="px-4 py-4">
                                     <h4>No se encontraron usuarios</h4>
