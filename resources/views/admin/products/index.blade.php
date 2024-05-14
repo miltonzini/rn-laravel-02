@@ -47,7 +47,7 @@
                                         @foreach($products as $product)
                                         <tr>
                                             <td>{{ $product->title }}</td>
-                                            <td>{{ $product->category }}</td>
+                                            <td>{{ $product->category->title }}</td>
                                             @php
                                                 $price = $product->price;
                                                 $discount = $product->discount;
