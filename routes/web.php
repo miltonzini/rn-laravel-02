@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {return view('home');})->name('home');
 Route::get('/login', function () {return view('login');})->name('login');
@@ -16,7 +17,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/users/edit', function () {return view('admin.users.edit');})->name('admin.users.edit');
     Route::get('/users/create', function () {return view('admin.users.create');})->name('admin.users.create');
     
-    Route::get('/categories/index', function () {return view('admin.categories.index');})->name('admin.categories.index');
+    Route::get('/categories/index', [CategoryController::class, 'index'])->name('admin.categories.index'); // Listar categorías
     Route::get('/categories/edit', function () {return view('admin.categories.edit');})->name('admin.categories.edit');
     Route::get('/categories/create', function () {return view('admin.categories.create');})->name('admin.categories.create');
     

@@ -16,7 +16,9 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <h1 class="h3 mb-2 text-gray-800">Listado de categorías</h1>
-                            <p class="mb-4">Total registradas: 0</p>
+                            @if (isset($categoriesCount))                                            
+                            <p class="mb-4">Total registradas: {{ $categoriesCount }}</p>
+                            @endif
                         </div>
 
                         <div class="col-lg-3">
@@ -26,28 +28,41 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Categoría</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Ferretería</td>
-                                            <td>
-                                                <a href="/"><i class="fa fa-edit"></i></a>
+                            @if (!empty($categories) && count($categories) > 0 )
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Categoría</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($categories as $category)
+                                            <tr>
+                                                <td>{{ $category->title }}</td>
+                                                <td>
+                                                    <a href="/"><i class="fa fa-edit"></i></a>
 
-                                                |
+                                                    |
 
-                                                <a href="/"><i class="fa fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                                    <a href="/"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="pagination p-4">
+                                {{ $categories->links() }}
+                                <div>
+
+                            @else
+                                <div class="px-4 py-4">
+                                    <h4>No se encontraron categorías</h4>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
