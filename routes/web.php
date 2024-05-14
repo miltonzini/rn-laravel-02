@@ -18,7 +18,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/users/create', function () {return view('admin.users.create');})->name('admin.users.create');
     
     Route::get('/categories/index', [CategoryController::class, 'index'])->name('admin.categories.index'); // Listar categorías
-    Route::get('/categories/edit', function () {return view('admin.categories.edit');})->name('admin.categories.edit');
+    Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit'); // Mostrar formulario para editar categoría
+    Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update'); // Actualizar categoría en la base de datos
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create'); // Mostrar formulario para crear categoría
     Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store'); // Guardar categoría en la base de datos
     

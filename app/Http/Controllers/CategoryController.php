@@ -42,4 +42,36 @@ class CategoryController extends Controller
             'message' => 'Categoría registrado con éxito'
         ]);
     }
+
+    public function edit($id) {
+        $categoryData = Category::select('id', 'title')->where('id', $id)->first();
+        if (!$categoryData) {
+            return redirect()->route('admin.categories.index');
+        }
+        $scripts = ['categories.js'];
+        return view('admin.categories.edit', compact('categoryData', 'scripts')); 
+    }
+    public function update($id, Request $request) {
+        $messages = [
+            'title.required' => 'Debes ingresar el título de la categoría',
+            'title.min' => 'El título debe tener al menos 3 caracteres',
+            'title.max' => 'El título debe tener un máximo de 50 caracteres',
+            'title.unique' => 'Ya existe una categoría con ese título',
+        ];
+        
+        $validations = $request->validate([
+            'title' => 'required|min:3|max:50|unique:categories,title,'.$id.',id',
+        ], $messages);
+
+        $title = $request->input('title');
+
+        Category::where('id', $id)->update([
+            'title' => $title,
+        ]);
+
+        return Response()->json([
+            'success' => true, 
+            'message' => 'Categoría editada con éxito'
+        ]);
+    }
 }
