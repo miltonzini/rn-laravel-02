@@ -14,8 +14,8 @@
                 @include('partials.admin.nav')
 
                 <div class="container-fluid">
-                    @if (isset($usersCount))                                            
                     <h1 class="h3 mb-2 text-gray-800">Listado de usuarios</h1>
+                    @if (isset($usersCount))                                            
                     <p class="mb-4">Total registrados: {{ $usersCount }}</p>
                     @endif
 
@@ -48,7 +48,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                                 <div class="pagination p-4">
                                 {{ $users->links() }}
                                 <div>
