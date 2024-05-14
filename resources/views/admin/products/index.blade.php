@@ -16,9 +16,13 @@
 
                 <div class="container-fluid">
                     <div class="row">
+                        
+
                         <div class="col-lg-9">
                             <h1 class="h3 mb-2 text-gray-800">Listado de productos</h1>
-                            <p class="mb-4">Total registrados: 0</p>
+                            @if (isset($productsCount))                 
+                            <p class="mb-4">Total registrados: {{ $productsCount }}</p>                           
+                            @endif
                         </div>
 
                         <div class="col-lg-3">
@@ -28,6 +32,7 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                        @if (!empty($products) && count($products) > 0 )
                             <div class="table-responsive">
                                 <table class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
@@ -39,10 +44,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($products as $product)
                                         <tr>
-                                            <td>Tornillo</td>
-                                            <td>Ferretería</td>
-                                            <td>$5.00 (descuento del 10%)</td>
+                                            <td>{{ $product->title }}</td>
+                                            <td>{{ $product->category }}</td>
+                                            @php
+                                                $price = $product->price;
+                                                $discount = $product->discount;
+                                                if ($discount > 0) {
+                                                    $priceWithDiscount = ($price - ($price * $discount / 100 ));
+                                                    $showDiscount = true;
+                                                } else {
+                                                    $showDiscount = false;
+                                                }
+                                                
+                                            @endphp
+                                            <td>
+                                                <span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ $price}}</span>
+                                                @if ($showDiscount)                                                    
+                                                    <span class="price-with-discount text-success"><strong>${{ $priceWithDiscount}}</strong></span>
+                                                    <span class="disclaimer text-muted">(descuento del {{ $discount }}%) </span>
+                                                    </td>
+                                                @endif
                                             <td>
                                                 <a href="/"><i class="fa fa-edit"></i></a>
 
@@ -51,9 +74,18 @@
                                                 <a href="/"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="pagination p-4">
+                            {{ $products->links() }}
+                            <div>
+                        @else
+                            <div class="px-4 py-4">
+                                <h4>No se encontraron productos</h4>
+                            </div>
+                        @endif
                         </div>
                     </div>
 
