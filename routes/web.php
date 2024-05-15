@@ -28,6 +28,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update'); // Actualizar producto en la base de datos
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create'); // Mostrar formulario para crear producto
     Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store'); // Guardar producto en la base de datos
+    Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete'); // Eliminar producto
     
     
     

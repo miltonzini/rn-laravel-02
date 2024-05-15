@@ -135,4 +135,22 @@ class ProductController extends Controller
             'message' => 'Producto editado con éxito'
         ]);
     }
+    
+    public function delete($id) {
+        $productData = Product::where('id', $id)->first();
+        
+        if(!$productData) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'No existe producto con dicho ID'
+            ]);
+        }
+
+
+        Product::where('id', $id)->delete();
+        return Response()->json([
+            'success' => true,
+            'message' => 'Producto eliminado con éxito'
+        ]);
+    }
 }

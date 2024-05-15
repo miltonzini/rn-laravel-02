@@ -83,3 +83,49 @@ $(document).on('submit', '#edit-product-form', function(event) {
 
     updateProduct(action, method, data);
 })
+
+
+function deleteProduct(productId) {
+    console.log('deleteProduct called');
+    $.ajax({
+        url: url + '/admin/products/delete/' + productId,
+        type: 'delete',
+        data: null,
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.success) {
+                Swal.fire({
+                    title: "Mensaje",
+                    text: response.message,
+                    icon: "success"
+                }).then(function(){
+                    location.reload();
+                });                
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: response.message,
+                    icon: "error"
+                });
+            }
+        },
+        error: function(xhr) {
+            $.each(xhr.responseJSON.errors, function(index, value) {
+                Swal.fire({
+                    title: "Error",
+                    text: value,
+                    icon: "warning"
+                });
+            });
+        }
+    })
+}
+
+$(document).on('click', '.delete-product-button', function() {
+    console.log('event');
+    let productId = $(this).attr('data-product-id');
+    deleteProduct(productId);
+})
