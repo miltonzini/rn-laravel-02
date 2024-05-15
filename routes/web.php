@@ -24,7 +24,8 @@ Route::prefix('admin')->group(function() {
     Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store'); // Guardar categoría en la base de datos
     
     Route::get('/products/index', [ProductController::class, 'index'])->name('admin.products.index'); // Listar productos
-    Route::get('/products/edit', function () {return view('admin.products.edit');})->name('admin.products.edit');
+    Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit'); // Mostrar formulario para editar producto
+    Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update'); // Actualizar producto en la base de datos
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create'); // Mostrar formulario para crear producto
     Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store'); // Guardar producto en la base de datos
     

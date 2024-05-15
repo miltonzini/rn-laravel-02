@@ -20,23 +20,27 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <a href="listado-productos.html" class="btn btn-primary float-right">Volver</a>
+                            <a href="{{ route('admin.products.index') }}" class="btn btn-primary float-right">Volver</a>
                         </div>
                     </div>
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ route('admin.products.update', ['id' => $productData->id])}}" method="post" id="edit-product-form">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="control-label">Título *</label>
-                                        <input type="text" name="title" placeholder="Título *" class="form-control">
+                                        <input type="text" name="title" placeholder="Título *" class="form-control" value="{{ $productData->title }}">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="control-label">Categoría *</label>
                                         <select name="category" class="form-control">
                                             <option value="">Seleccionar...</option>
+                                            @foreach ($categories as $category )
+                                            <option value="{{ $category->id }}" {{ $category->id == $productData->category_id ? 'selected' : ''}}>{{ $category->title }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -44,19 +48,19 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12">
                                         <label class="control-label">Descripción *</label>
-                                        <textarea class="form-control" name="description"></textarea>
+                                        <textarea class="form-control" name="description">{{ $productData->description }}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="control-label">Precio *</label>
-                                        <input type="text" name="price" placeholder="Precio *" class="form-control">
+                                        <input type="text" name="price" placeholder="Precio *" class="form-control"  value="{{ $productData->price }}">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="control-label">Descuento</label>
-                                        <input type="text" name="discount" placeholder="Descuento" class="form-control">
+                                        <input type="text" name="discount" placeholder="Descuento" class="form-control"  value="{{ $productData->discount }}">
                                         <small>Dejar "0" o vacío si no aplica</small>
                                     </div>
                                 </div>
