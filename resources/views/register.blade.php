@@ -12,24 +12,25 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Crear una cuenta</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" action="{{ route('store-user') }}" method="post" id="register-form">
+                                @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" placeholder="Nombre">
+                                        <input type="text" class="form-control form-control-user" placeholder="Nombre" name="name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" placeholder="Apellido">
+                                        <input type="text" class="form-control form-control-user" placeholder="Apellido" name="surname">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" placeholder="Email">
+                                    <input type="email" class="form-control form-control-user" placeholder="Email" name="email">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" placeholder="Contraseña">
+                                        <input type="password" class="form-control form-control-user" placeholder="Contraseña" name="password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" placeholder="Repetir contraseña">
+                                        <input type="password" class="form-control form-control-user" placeholder="Repetir contraseña" name="repeat-password">
                                     </div>
                                 </div>
 
@@ -48,4 +49,11 @@
         </div>
 
     </div>
+@push('scripts')
+@if (isset($scripts) && !empty($scripts))
+@foreach ($scripts as $script)
+    <script src="{{ asset('public/js/functions/' . $script) }}"></script>
+@endforeach
+@endif
+@endpush
 </x-adminLayout>

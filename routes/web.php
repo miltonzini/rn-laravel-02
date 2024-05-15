@@ -7,7 +7,8 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {return view('home');})->name('home');
 Route::get('/login', function () {return view('login');})->name('login');
-Route::get('/register', function () {return view('register');})->name('register');
+Route::get('/register', [UserController::class, 'create'])->name('register'); // Mostrar forumlario de registro de usuario
+Route::post('/store-user', [UserController::class, 'store'])->name('store-user'); // Guardar usuario en la base de datos
 
 
 Route::prefix('admin')->group(function() {
