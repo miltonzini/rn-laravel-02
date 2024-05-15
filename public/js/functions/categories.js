@@ -1,4 +1,4 @@
-console.log('Categories.js called');
+// console.log('Categories.js called');
 
 function createCategory(action, method, data) {
     $.ajax({
@@ -44,7 +44,6 @@ $(document).on('submit', '#create-category-form', function(event) {
 
 
 function updateCategory(action, method, data) {
-    console.log("updateCategory called");
     $.ajax({
         url: action, 
         type: method,
@@ -78,7 +77,6 @@ function updateCategory(action, method, data) {
 }
 
 $(document).on('submit', '#edit-category-form', function(event) {
-    console.log("event");
     event.preventDefault();
     let action = $(this).attr('action'),
     method = $(this).attr('method'),

@@ -1,6 +1,5 @@
-console.log('Users.js called');
+// console.log('Users.js called');
 function createUser(action, method, data) {
-    console.log('createUser called');
     $.ajax({
         url: action, 
         type: method,
@@ -33,7 +32,6 @@ function createUser(action, method, data) {
 }
 
 $(document).on('submit', '#register-form', function(event) {
-    console.log('event');
     event.preventDefault();
     let action = $(this).attr('action'),
     method = $(this).attr('method'),

@@ -1,7 +1,6 @@
-console.log('Products.js called');
+// console.log('Products.js called');
 
 function createProduct(action, method, data) {
-    console.log('createProduct called');
     $.ajax({
         url: action, 
         type: method,
@@ -34,7 +33,6 @@ function createProduct(action, method, data) {
 }
 
 $(document).on('submit', '#create-product-form', function(event) {
-    console.log('event');
     event.preventDefault();
     let action = $(this).attr('action'),
     method = $(this).attr('method'),
@@ -45,7 +43,6 @@ $(document).on('submit', '#create-product-form', function(event) {
 
 
 function updateProduct(action, method, data) {
-    console.log('updateProduct called');
     $.ajax({
         url: action, 
         type: method,
@@ -79,7 +76,6 @@ function updateProduct(action, method, data) {
 }
 
 $(document).on('submit', '#edit-product-form', function(event) {
-    console.log('event');
     event.preventDefault();
     let action = $(this).attr('action'),
     method = $(this).attr('method'),
