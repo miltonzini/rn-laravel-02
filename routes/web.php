@@ -25,7 +25,8 @@ Route::prefix('admin')->group(function() {
     
     Route::get('/products/index', [ProductController::class, 'index'])->name('admin.products.index'); // Listar productos
     Route::get('/products/edit', function () {return view('admin.products.edit');})->name('admin.products.edit');
-    Route::get('/products/create', function () {return view('admin.products.create');})->name('admin.products.create');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create'); // Mostrar formulario para crear producto
+    Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store'); // Guardar producto en la base de datos
     
     
     

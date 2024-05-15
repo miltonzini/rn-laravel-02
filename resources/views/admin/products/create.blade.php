@@ -26,7 +26,8 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ route('admin.products.store') }}" method="post" id="create-product-form">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="control-label">Título *</label>
@@ -37,6 +38,9 @@
                                         <label class="control-label">Categoría *</label>
                                         <select name="category" class="form-control">
                                             <option value="">Seleccionar...</option>
+                                            @foreach ($categories as $category )
+                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -55,7 +59,7 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label class="control-label">Descuento</label>
+                                        <label class="control-label">% Descuento</label>
                                         <input type="text" name="discount" placeholder="Descuento" class="form-control">
                                         <small>Dejar "0" o vacío si no aplica</small>
                                     </div>
