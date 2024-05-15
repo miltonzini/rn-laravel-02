@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <a href="listado-productos.html" class="btn btn-primary float-right">Volver</a>
+                            <a href="{{ route('admin.products.index') }}" class="btn btn-primary float-right">Volver</a>
                         </div>
                     </div>
 

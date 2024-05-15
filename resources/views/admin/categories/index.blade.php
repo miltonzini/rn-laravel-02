@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <a href="registro-categoria.html" class="btn btn-primary float-right">Nueva categoría</a>
+                            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary float-right">Nueva categoría</a>
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@
                                             <tr>
                                                 <td>{{ $category->title }}</td>
                                                 <td>
-                                                    <a href="/"><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('admin.categories.edit', ['id' => $category->id]) }}"><i class="fa fa-edit"></i></a>
 
                                                     |
 

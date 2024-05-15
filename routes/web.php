@@ -15,7 +15,6 @@ Route::prefix('admin')->group(function() {
     
     Route::get('/users/index', [UserController::class, 'index'])->name('admin.users.index'); // Listar usuarios
     Route::get('/users/edit', function () {return view('admin.users.edit');})->name('admin.users.edit');
-    Route::get('/users/create', function () {return view('admin.users.create');})->name('admin.users.create');
     
     Route::get('/categories/index', [CategoryController::class, 'index'])->name('admin.categories.index'); // Listar categorías
     Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit'); // Mostrar formulario para editar categoría

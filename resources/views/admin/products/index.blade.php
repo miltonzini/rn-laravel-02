@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <a href="registro-producto.html" class="btn btn-primary float-right">Nuevo producto</a>
+                            <a href="{{ route('admin.products.create') }}" class="btn btn-primary float-right">Nuevo producto</a>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
                                                     </td>
                                                 @endif
                                             <td>
-                                                <a href="/"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ route('admin.products.edit', ['id' => $product->id]) }}"><i class="fa fa-edit"></i></a>
 
                                                 |
 
