@@ -40,7 +40,7 @@ class ProductController extends Controller
             'description.max' => 'El campo "descripción" debe tener un máximo de 60 caracteres',
             'price.required' => 'Debes ingresar el precio',
             'price.numeric' => 'El precio debe ser un valor numérico',
-            'price.min' => 'El precio no puede ser un número negativo',
+            'price.between' => 'El precio debe ser positivo y tener un máximo de 13 dígitos no decimales.',
             'discount.numeric' => 'El descuento debe ser un valor numérico',
             'discount.min' => 'El descuento no puede ser un número negativo',
             'discount.max' => 'El descuento no puede mayor al 100%',
@@ -50,7 +50,7 @@ class ProductController extends Controller
            'title' => 'required|min:3|max:20',
            'category' => 'required|exists:categories,id',
            'description' => 'nullable|min:10|max:60',
-           'price' => 'nullable|required|numeric|min:0',
+           'price' => 'nullable|required|numeric|between:0,9999999999999.99',
            'discount' => 'numeric|min:0|max:100',
 
         ], $messages);
