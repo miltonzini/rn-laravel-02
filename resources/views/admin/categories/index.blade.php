@@ -46,7 +46,22 @@
 
                                                     |
 
-                                                    <a href="/"><i class="fa fa-trash"></i></a>
+                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#category-delete-modal-{{$category->id}}"><i class="fa fa-trash"></i></a>
+
+                                                    <div class="modal fade" id="category-delete-modal-{{$category->id}}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">¿Desea eliminar la categoría?</div>
+                                                                <div class="modal-body">
+                                                                    <p>¿Eliminar <strong>{{ $category->title }}</strong>?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                    <button type="button" class="btn btn-danger delete-category-button" data-category-id="{{ $category->id }}">Eliminar</button>
+                                                                </div>  
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             @endforeach

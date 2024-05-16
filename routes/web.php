@@ -22,6 +22,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update'); // Actualizar categoría en la base de datos
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create'); // Mostrar formulario para crear categoría
     Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store'); // Guardar categoría en la base de datos
+    Route::delete('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete'); // Eliminar categoría
     
     Route::get('/products/index', [ProductController::class, 'index'])->name('admin.products.index'); // Listar productos
     Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit'); // Mostrar formulario para editar producto

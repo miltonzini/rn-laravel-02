@@ -84,3 +84,47 @@ $(document).on('submit', '#edit-category-form', function(event) {
 
     updateCategory(action, method, data);
 })
+
+
+function deleteCategory(categoryId) {
+    $.ajax({
+        url: url + '/admin/categories/delete/' + categoryId,
+        type: 'delete',
+        data: null,
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.success) {
+                Swal.fire({
+                    title: "Mensaje",
+                    text: response.message,
+                    icon: "success"
+                }).then(function(){
+                    location.reload();
+                });                
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: response.message,
+                    icon: "error"
+                });
+            }
+        },
+        error: function(xhr) {
+            $.each(xhr.responseJSON.errors, function(index, value) {
+                Swal.fire({
+                    title: "Error",
+                    text: value,
+                    icon: "warning"
+                });
+            });
+        }
+    })
+}
+
+$(document).on('click', '.delete-category-button', function() {
+    let categoryId = $(this).attr('data-category-id');
+    deleteCategory(categoryId);
+})

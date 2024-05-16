@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -73,5 +74,29 @@ class CategoryController extends Controller
             'success' => true, 
             'message' => 'Categoría editada con éxito'
         ]);
+    }
+
+    public function delete($id) {
+        $category = Category::find($id);
+        
+        if(!$category) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'No existe una categoría con dicho ID'
+            ]);
+        }
+
+    
+        Product::where('category_id', $id)->update(['category_id' => null]);
+
+        $category->delete();
+        
+        return Response()->json([
+            'success' => true,
+            'message' => 'Se ha eliminado la categoría y se han actualizado los productos asociados'
+        ]);
+        
+    
+
     }
 }

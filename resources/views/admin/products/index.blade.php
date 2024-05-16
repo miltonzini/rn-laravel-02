@@ -47,7 +47,7 @@
                                         @foreach($products as $product)
                                         <tr>
                                             <td>{{ $product->title }}</td>
-                                            <td>{{ $product->category->title }}</td>
+                                            <td>{!! $product->category_id ? $product->category->title : '<span class="text-muted">sin categoría</span>' !!}</td>
                                             @php
                                                 $price = $product->price;
                                                 $discount = $product->discount;
