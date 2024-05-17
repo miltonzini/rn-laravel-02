@@ -34,6 +34,7 @@ class ProductController extends Controller
             'title.required' => 'Debes ingresar el título del producto',
             'title.min' => 'El título del producto debe tener al menos 3 caracteres',
             'title.max' => 'El título del producto debe tener un máximo de 20 caracteres',
+            'title.unique' => 'Ya existe un producto con ese nombre',
             'category.required' => 'Debes ingresar la categoría',
             'category.exists' => 'La categoría seleccionada no es válida',
             'description.min' => 'El campo "descripción" debe tener al menos 10 caracteres',
@@ -47,7 +48,7 @@ class ProductController extends Controller
         ];
         
         $validations = $request->validate([
-           'title' => 'required|min:3|max:20',
+           'title' => 'required|min:3|max:20|unique:products',
            'category' => 'required|exists:categories,id',
            'description' => 'nullable|min:10|max:60',
            'price' => 'nullable|required|numeric|between:0,9999999999999.99',
@@ -96,6 +97,7 @@ class ProductController extends Controller
             'title.required' => 'Debes ingresar el título del producto',
             'title.min' => 'El título del producto debe tener al menos 3 caracteres',
             'title.max' => 'El título del producto debe tener un máximo de 20 caracteres',
+            'title.unique' => 'Ya existe un producto con ese nombre',
             'category.required' => 'Debes ingresar la categoría',
             'category.exists' => 'La categoría seleccionada no es válida',
             'description.min' => 'El campo "descripción" debe tener al menos 10 caracteres',
@@ -109,7 +111,7 @@ class ProductController extends Controller
         ];
         
         $validations = $request->validate([
-            'title' => 'required|min:3|max:20',
+            'title' => 'required|min:3|max:20|unique:products,title,'.$id.',id',
             'category' => 'required|exists:categories,id',
             'description' => 'nullable|min:10|max:60',
             'price' => 'nullable|required|numeric|between:0,9999999999999.99',
