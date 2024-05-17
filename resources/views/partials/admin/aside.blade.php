@@ -6,7 +6,13 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Lucas Ferro</div>
+            <div class="sidebar-brand-text mx-3">
+            {{ Session('administrator')['name'] . ' ' . Session('administrator')['surname'] }}
+            <span style="display: block;text-transform:none;font-size:0.8rem;font-weight: 200">{{ Session('administrator')['email'] }}</span>
+            </div>
+            <div>
+            </div>
+            
         </a>
 
         <li class="nav-item {{ setActiveRoute(['admin.products.index', 'admin.products.create', 'admin.products.edit']) }}">

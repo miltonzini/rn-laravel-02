@@ -10,7 +10,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Lucas Ferro</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Session('administrator')['name'] . ' ' . Session('administrator')['surname'] }}</span><br>
                 <img class="img-profile rounded-circle"
                     src="{{ mix('vendor/sb-admin-2/img/undraw_profile.svg') }}">
             </a>
@@ -40,7 +40,7 @@
                 <div class="modal-body">Seleccionar "Salir" para cerrar la sesión de su cuenta.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="login.html">Salir</a>
+                    <a class="btn btn-primary" href="{{ route('logout-user') }}">Salir</a>
                 </div>
             </div>
         </div>
