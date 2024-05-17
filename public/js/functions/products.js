@@ -86,7 +86,6 @@ $(document).on('submit', '#edit-product-form', function(event) {
 
 
 function deleteProduct(productId) {
-    console.log('deleteProduct called');
     $.ajax({
         url: url + '/admin/products/delete/' + productId,
         type: 'delete',
@@ -125,7 +124,6 @@ function deleteProduct(productId) {
 }
 
 $(document).on('click', '.delete-product-button', function() {
-    console.log('event');
     let productId = $(this).attr('data-product-id');
     deleteProduct(productId);
 })
