@@ -18,7 +18,11 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <p>Bienvenido al Dashboard</p>
+                            <h2>Resumen</h2>
+                            <p><strong>00</strong> Productos</p>
+                            <p><strong>00</strong> Categorías</p>
+                            <p><strong>00</strong> Usuarios registrados</p>
+                            <p><strong>00</strong> Usuarios online</p>
                         </div>
                     </div>
 
