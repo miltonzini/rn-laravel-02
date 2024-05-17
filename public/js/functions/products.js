@@ -9,6 +9,10 @@ function createProduct(action, method, data) {
         cache: false,
     	contentType: false,
     	processData: false,
+        beforeSend: function() {
+            $('#create-product-button').prop('disabled', true);
+            $('#create-product-button').text('Registrando...');
+        },
         success: function(response) {
             if (response.success) {
                 Swal.fire({
@@ -26,6 +30,9 @@ function createProduct(action, method, data) {
                     title: "Error",
                     text: value,
                     icon: "warning"
+                }).then(function() {
+                    $('#create-product-button').prop('disabled', false);
+                    $('#create-product-button').text('Registrar producto');
                 });
             });
         }
@@ -51,6 +58,10 @@ function updateProduct(action, method, data) {
         cache: false,
     	contentType: false,
     	processData: false,
+        beforeSend: function() {
+            $('#update-product-button').prop('disabled', true);
+            $('#update-product-button').text('Actualizando...');
+        },
         success: function(response) {
             if (response.success) {
                 Swal.fire({
@@ -69,6 +80,9 @@ function updateProduct(action, method, data) {
                     title: "Error",
                     text: value,
                     icon: "warning"
+                }).then(function() {
+                    $('#update-product-button').prop('disabled', false);
+                    $('#update-product-button').text('Actualizar producto');
                 });
             });
         }
@@ -94,6 +108,10 @@ function deleteProduct(productId) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
+        beforeSend: function() {
+            $('.delete-product-button').prop('disabled', true);
+            $('.delete-product-button').text('Eliminando...');
+        },
         success: function(response) {
             if (response.success) {
                 Swal.fire({
@@ -108,6 +126,9 @@ function deleteProduct(productId) {
                     title: "Error",
                     text: response.message,
                     icon: "error"
+                }).then(function() {
+                    $('.delete-product-button').prop('disabled', false);
+                    $('.delete-product-button').text('Eliminar');
                 });
             }
         },
@@ -117,6 +138,9 @@ function deleteProduct(productId) {
                     title: "Error",
                     text: value,
                     icon: "warning"
+                }).then(function() {
+                    $('.delete-product-button').prop('disabled', false);
+                    $('.delete-product-button').text('Eliminar');
                 });
             });
         }

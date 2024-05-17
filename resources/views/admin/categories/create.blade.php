@@ -37,7 +37,7 @@
 
                                 <div class="row mt-3">
                                     <div class="col-md-4 float-end">
-                                        <button type="submit" class="btn btn-info btn-sm">Registrar categoría</button>
+                                        <button type="submit" class="btn btn-info btn-sm" id="create-category-button">Registrar categoría</button>
                                     </div>
                                 </div>
                             </form>

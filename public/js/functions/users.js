@@ -12,6 +12,10 @@ function loginUser(action, method, data) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }, 
+        beforeSend: function() {
+            $('#login-button').prop('disabled', true);
+            $('#login-button').text('Iniciando sesión...');
+        },
         success: function (response) {
             if (response.success) {
                 window.location.href = url + '/admin'
@@ -20,7 +24,10 @@ function loginUser(action, method, data) {
                     title: 'Error',
                     text: response.message,
                     icon: 'warning'
-                })
+                }).then(function() {
+                    $('#login-button').prop('disabled', false);
+                    $('#login-button').text('Registrar');
+                });
             }
         }
     })
@@ -46,6 +53,10 @@ function createUser(action, method, data) {
         cache: false,
     	contentType: false,
     	processData: false,
+        beforeSend: function() {
+            $('#register-button').prop('disabled', true);
+            $('#register-button').text('Registrando...');
+        },
         success: function(response) {
             if (response.success) {
                 Swal.fire({
@@ -63,6 +74,9 @@ function createUser(action, method, data) {
                     title: "Error",
                     text: value,
                     icon: "warning"
+                }).then(function() {
+                    $('#register-button').prop('disabled', false);
+                    $('#register-button').text('Registrarme');
                 });
             });
         }

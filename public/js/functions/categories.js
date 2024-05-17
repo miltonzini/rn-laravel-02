@@ -9,6 +9,10 @@ function createCategory(action, method, data) {
         cache: false,
     	contentType: false,
     	processData: false,
+        beforeSend: function() {
+            $('#create-category-button').prop('disabled', true);
+            $('#create-category-button').text('Registrando...');
+        },
         success: function(response) {
             if (response.success) {
                 Swal.fire({
@@ -26,6 +30,9 @@ function createCategory(action, method, data) {
                     title: "Error",
                     text: value,
                     icon: "warning"
+                }).then(function() {
+                    $('#create-category-button').prop('disabled', false);
+                    $('#create-category-button').text('Registrar');
                 });
             });
         }
@@ -52,6 +59,10 @@ function updateCategory(action, method, data) {
         cache: false,
     	contentType: false,
     	processData: false,
+        beforeSend: function() {
+            $('#update-category-button').prop('disabled', true);
+            $('#update-category-button').text('Actualizando...');
+        },
         success: function(response) {
             if (response.success) {
                 Swal.fire({
@@ -70,6 +81,9 @@ function updateCategory(action, method, data) {
                     title: "Error",
                     text: value,
                     icon: "warning"
+                }).then(function() {
+                    $('#update-category-button').prop('disabled', false);
+                    $('#update-category-button').text('Actualizar categoría');
                 });
             });
         }
@@ -95,6 +109,10 @@ function deleteCategory(categoryId) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
+        beforeSend: function() {
+            $('.delete-category-button').prop('disabled', true);
+            $('.delete-category-button').text('Eliminando...');
+        },
         success: function(response) {
             if (response.success) {
                 Swal.fire({
@@ -109,6 +127,9 @@ function deleteCategory(categoryId) {
                     title: "Error",
                     text: response.message,
                     icon: "error"
+                }).then(function() {
+                    $('.delete-category-button').prop('disabled', false);
+                    $('.delete-category-button').text('Eliminar');
                 });
             }
         },
@@ -119,6 +140,9 @@ function deleteCategory(categoryId) {
                     text: value,
                     icon: "warning"
                 });
+            }).then(function() {
+                $('.delete-category-button').prop('disabled', false);
+                $('.delete-category-button').text('Eliminar');
             });
         }
     })

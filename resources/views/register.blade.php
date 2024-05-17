@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-user btn-block">Registrarme</button>
+                                <button type="submit" class="btn btn-primary btn-user btn-block" id="register-button">Registrarme</button>
                             </form>
 
                             <hr>

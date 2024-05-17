@@ -25,7 +25,7 @@
                                             <input type="password" class="form-control form-control-user"placeholder="Contraseña" name="password">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" id="login-button">Login</button>
                                     </form>
 
                                     <hr>

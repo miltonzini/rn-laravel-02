@@ -67,7 +67,7 @@
 
                                 <div class="row mt-3">
                                     <div class="col-md-4 float-end">
-                                        <button type="submit" class="btn btn-info btn-sm">Registrar producto</button>
+                                        <button type="submit" class="btn btn-info btn-sm" id="create-product-button">Registrar producto</button>
                                     </div>
                                 </div>
                             </form>

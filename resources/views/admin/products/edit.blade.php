@@ -67,7 +67,7 @@
 
                                 <div class="row mt-3">
                                     <div class="col-md-4 float-end">
-                                        <button type="submit" class="btn btn-info btn-sm">Actualizar producto</button>
+                                        <button type="submit" class="btn btn-info btn-sm" id="update-product-button">Actualizar producto</button>
                                     </div>
                                 </div>
                             </form>
