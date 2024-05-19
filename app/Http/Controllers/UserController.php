@@ -130,4 +130,28 @@ class UserController extends Controller
             'message' => 'Usuario editado con éxito'
         ]);
     }
+
+    public function delete($id) {
+        $userData = User::where('id', $id)->first();
+        
+        if(!$userData) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'No existe usuario registrado con dicho ID'
+            ]);
+        }
+
+        if ($id == Session('administrator')['id']) {
+            return Response()->json([
+                'succes' => false,
+                'message' => 'No puedes eliminarte a tí mismo del sistema'
+            ]);
+        }
+
+        User::where('id', $id)->delete();
+        return Response()->json([
+            'success' => true,
+            'message' => 'Usuario eliminado con éxito'
+        ]);
+    }
 }

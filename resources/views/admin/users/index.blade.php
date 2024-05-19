@@ -41,7 +41,22 @@
                                                 <td>
                                                     <a href="{{ route('admin.users.edit', ['id' => $user->id]) }}"><i class="fa fa-edit"></i></a>
                                                     |
-                                                    <a href="/"><i class="fa fa-trash"></i></a>
+                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#user-delete-modal-{{$user->id}}"><i class="fa fa-trash"></i></a>
+
+                                                    <div class="modal fade" id="user-delete-modal-{{$user->id}}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">¿Desea eliminar el usuario?</div>
+                                                                <div class="modal-body">
+                                                                    <p>¿Eliminar <strong>{{ $user->name . ' ' . $user->surname }}</strong>?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                    <button type="button" class="btn btn-danger delete-user-button" data-user-id="{{ $user->id }}">Eliminar</button>
+                                                                </div>  
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             @endforeach
