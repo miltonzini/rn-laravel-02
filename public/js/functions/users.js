@@ -1,4 +1,4 @@
-console.log('Users.js called');
+// console.log('Users.js called');
 
 function loginUser(action, method, data) {
     $.ajax({
@@ -93,7 +93,6 @@ $(document).on('submit', '#register-form', function(event) {
 })
 
 function updateUser(action, method, data) {
-    console.log('Update users called');
     $.ajax({
         url: action, 
         type: method,
@@ -134,7 +133,6 @@ function updateUser(action, method, data) {
 }
 
 $(document).on('submit', '#edit-user-form', function(event) {
-    console.log('event');
     event.preventDefault();
     let action = $(this).attr('action'),
     method = $(this).attr('method'),
@@ -144,7 +142,6 @@ $(document).on('submit', '#edit-user-form', function(event) {
 })
 
 function deleteUser(userId) {
-    console.log('Delete called');
     $.ajax({
         url: url + '/admin/users/delete/' + userId,
         type: 'delete',
@@ -167,7 +164,6 @@ function deleteUser(userId) {
                     location.reload();
                 });                
             } else {
-                console.log('else called');
                 Swal.fire({
                     title: "Error",
                     text: response.message,
@@ -179,7 +175,6 @@ function deleteUser(userId) {
             }
         },
         error: function(xhr) {
-            console.log('error');
             $.each(xhr.responseJSON.errors, function(index, value) {
                 Swal.fire({
                     title: "Error",
