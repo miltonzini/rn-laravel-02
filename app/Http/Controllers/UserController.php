@@ -68,4 +68,66 @@ class UserController extends Controller
             'message' => 'Usuario registrado con éxito'
         ]);
     }
+
+    public function edit($id) {
+        $userData = User::select('id', 'name', 'surname', 'email')->where('id', $id)->first();
+        if (!$userData) {
+            return redirect()->route('admin.users.index');
+        }
+        $scripts = ['users.js'];
+        return view('admin.users.edit', compact('userData', 'scripts')); 
+    }
+
+    public function update($id, Request $request) {
+        $messages = [
+            'name.required' => 'Debes ingresar el nombre del usuario',
+            'name.min' => 'El nombre debe tener al menos 3 caracteres',
+            'name.max' => 'El nombre debe tener un máximo de 20 caracteres',
+            'surname.required' => 'Debes ingresar el apellido del usuario',
+            'surname.min' => 'El apellido debe tener al menos 3 caracteres',
+            'surname.max' => 'El apellido debe tener un máximo de 20 caracteres',
+            'email.required' => 'Debes ingresar el email',
+            'email.max' => 'El email debe tener un máximo de 60 caracteres',
+            'email.email' => 'El email es inválido',
+            'email.unique' => 'Ya existe un usuario registrado con ese email',
+            'password.required' => 'Debes ingresar tu password',
+            'password.min' => 'El password debe contener al menos 5 caracteres',
+            'repeat-password.required' => 'Complete el campo "repetir contraseña"',
+            'repeat-password.same' => 'Las contraseñas no coinciden',
+        ];
+        
+        $validations = $request->validate([
+           'name' => 'required|min:3|max:20',
+           'surname' => 'required|min:3|max:20',
+           'email' => 'required|max:60|email|unique:users,email,'.$id.',id',
+           'password' => 'nullable|min:5',
+           'repeat-password' => 'nullable|same:password',
+
+        ], $messages);
+
+        $name = $request->input('name');
+        $surname = $request->input('surname');
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        if ($password) {
+            User::where('id', $id)->update([
+                'name' => $name,
+                'surname' => $surname,
+                'email' => $email,
+                'password' => Hash::make($password)
+            ]);
+        } else {
+            User::where('id', $id)->update([
+                'name' => $name,
+                'surname' => $surname,
+                'email' => $email,
+            ]);
+        }
+
+        return Response()->json([
+            'success' => true, 
+            'message' => 'Usuario editado con éxito'
+        ]);
+    }
 }

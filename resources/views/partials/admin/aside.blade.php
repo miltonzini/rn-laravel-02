@@ -43,7 +43,7 @@
             </div>
         </li>
 
-        <li class="nav-item {{ setActiveRoute('admin.users.index') }}">
+        <li class="nav-item {{ setActiveRoute(['admin.users.index', 'admin.users.edit']) }}">
             <a class="nav-link" href="{{ route('admin.users.index')}}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Usuarios</span>

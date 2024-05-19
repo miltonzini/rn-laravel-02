@@ -39,7 +39,7 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
-                                                    <a href="/"><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('admin.users.edit', ['id' => $user->id]) }}"><i class="fa fa-edit"></i></a>
                                                     |
                                                     <a href="/"><i class="fa fa-trash"></i></a>
                                                 </td>

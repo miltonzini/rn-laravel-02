@@ -20,7 +20,8 @@ Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])-
         Route::get('/', function () {return view('admin.dashboard');})->name('dashboard');
         
         Route::get('/users/index', [UserController::class, 'index'])->name('admin.users.index'); // Listar usuarios
-        Route::get('/users/edit', function () {return view('admin.users.edit');})->name('admin.users.edit');
+        Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit'); // Mostrar formulario para editar usuario
+        Route::post('/users/update/{id}', [UserController::class, 'update'])->name('admin.users.update'); // Actualizar usuario en la base de datos
         
         Route::get('/categories/index', [CategoryController::class, 'index'])->name('admin.categories.index'); // Listar categorías
         Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit'); // Mostrar formulario para editar categoría
