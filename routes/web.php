@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\pages\DashboardController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\PreventBackHistoryMiddleware;
 
@@ -17,7 +18,8 @@ Route::post('/store-user', [UserController::class, 'store'])->name('store-user')
 
 Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])->group(function () {
     Route::prefix('admin')->group(function() {
-        Route::get('/', function () {return view('admin.dashboard');})->name('dashboard');
+        // Route::get('/', function () {return view('admin.dashboard');})->name('dashboard');
+        Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard'); // Mostrar Dashboard
         
         Route::get('/users/index', [UserController::class, 'index'])->name('admin.users.index'); // Listar usuarios
         Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit'); // Mostrar formulario para editar usuario

@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /* Test classes */
 .bg-pink {background: pink}
 .bg-red {background: red}
@@ -15,4 +19,9 @@
     max-width: 50%;
     z-index: 500000;
     border-radius: 5px;
+}
+
+.dashboard-info .item {max-width: 100%;}
+.text-large {
+    font-size: 3em!important;
 }

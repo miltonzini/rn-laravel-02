@@ -19,10 +19,12 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <h2>Resumen</h2>
-                            <p><strong>00</strong> Productos</p>
-                            <p><strong>00</strong> Categorías</p>
-                            <p><strong>00</strong> Usuarios registrados</p>
-                            <p><strong>00</strong> Usuarios online</p>
+                            <div class="row dashboard-info">
+                                <div class="item bg-primary col-md-3 p-3 m-2 text-light rounded-4"><p><strong class="d-block text-large">{{ $productsCount }}</strong> Productos</p></div>
+                                <div class="item bg-primary col-md-3 p-3 m-2 text-light rounded-4"><p><strong class="d-block text-large">{{ $categoriesCount }}</strong> Categorías</p></div>
+                                <div class="item bg-primary col-md-3 p-3 m-2 text-light rounded-4"><p><strong class="d-block text-large">{{ $usersCount }}</strong> Usuarios registrados</p></div>
+                                <div class="item bg-primary col-md-3 p-3 m-2 text-light rounded-4"><p><strong class="d-block text-large">00</strong> Usuarios online</p></div>
+                            </div>
                         </div>
                     </div>
 
