@@ -39,8 +39,6 @@ Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])-
         Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create'); // Mostrar formulario para crear producto
         Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store'); // Guardar producto en la base de datos
         Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete'); // Eliminar producto
-});
+    });
     
-    
-    Route::get('/test', function () {return view('admin.test');})->name('admin.test');
 });
