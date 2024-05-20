@@ -60,12 +60,14 @@
                                                 
                                             @endphp
                                             <td>
-                                                <span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ $price}}</span>
                                                 @if ($showDiscount)                                                    
+                                                    <del><span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ number_format($price, 2)}}</span></del>
                                                     <span class="price-with-discount text-success"><strong>${{ $priceWithDiscount}}</strong></span>
                                                     <span class="disclaimer text-muted">(descuento del {{ $discount }}%) </span>
-                                                    </td>
+                                                @else
+                                                    <span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ number_format($price, 2)}}</span>
                                                 @endif
+                                            </td>
                                             <td>
                                                 <a href="{{ route('admin.products.edit', ['id' => $product->id]) }}"><i class="fa fa-edit"></i></a>
 
