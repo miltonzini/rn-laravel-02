@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -67,7 +68,8 @@ class LoginController extends Controller
             ]);
         }
 
-
+        Auth::login($verifyEmail);
+        
         $userData = [
             'id' => $verifyEmail->id,
             'name' => $verifyEmail->name,
@@ -83,8 +85,10 @@ class LoginController extends Controller
     }
 
     public function logout()
-    {
-        Session::flush();
-        return redirect()->route('login');
-    }
+{
+    Auth::logout();
+    Session::flush();
+    return redirect()->route('login');
+}
+
 }
