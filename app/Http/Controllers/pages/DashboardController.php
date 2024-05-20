@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product; 
 use App\Models\Category;
 use App\Models\User; 
+use App\Models\Session; 
 
 class DashboardController extends Controller
 {
@@ -14,6 +15,7 @@ class DashboardController extends Controller
         $productsCount = Product::count();
         $categoriesCount = Category::count();
         $usersCount = User::count();
-        return view('admin.dashboard', compact('productsCount', 'categoriesCount', 'usersCount'));
+        $sessionsCount = Session::count();
+        return view('admin.dashboard', compact('productsCount', 'categoriesCount', 'usersCount', 'sessionsCount'));
     }
 }
