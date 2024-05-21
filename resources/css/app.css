@@ -1,5 +1,6 @@
 :root {
     --primary-soft: #4e73df8f;
+    --white: #fff;
 }
 
 * {
@@ -25,6 +26,14 @@
     max-width: 50%;
     z-index: 500000;
     border-radius: 5px;
+}
+
+.info-primary-soft {
+    background-color: var(--primary-soft);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--white);
+    font-weight: bold;
 }
 
 .dashboard-info .item {max-width: 100%;}

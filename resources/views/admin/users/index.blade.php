@@ -16,7 +16,7 @@
                 <div class="container-fluid">
                     <h1 class="h3 mb-2 text-gray-800">Listado de usuarios</h1>
                     @if (isset($usersCount) && !isset($search))
-                        <p class="mb-4">Total registrados: {{ $usersCount }}</p>
+                        <p class="mb-4">Total registrados: <span class="info-primary-soft">{{ $usersCount }}</span></p>
                     @endif
 
                     <div class="card shadow mb-4">
@@ -34,7 +34,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             @if (isset($search) && isset($usersCount))
-                            <p class="mb-4">Resultados: <strong>{{ $usersCount }}</strong></p>
+                            <p class="mb-4">Resultados: <span class="info-primary-soft">{{ $usersCount }}</span></p>
                             @endif
 
                             @if (!empty($users) && count($users) > 0 )

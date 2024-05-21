@@ -21,7 +21,7 @@
                         <div class="col-lg-9">
                             <h1 class="h3 mb-2 text-gray-800">Listado de productos</h1>
                             @if (isset($productsCount))                 
-                            <p class="mb-4">Total registrados: {{ $productsCount }}</p>                           
+                            <p class="mb-4">Total de productos: <span class="info-primary-soft">{{ $productsCount }}</span></p>                           
                             @endif
                         </div>
 
