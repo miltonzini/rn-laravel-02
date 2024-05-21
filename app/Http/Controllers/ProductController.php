@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product; 
 use App\Models\Category; 
+use App\Models\ProductImage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -53,6 +55,7 @@ class ProductController extends Controller
            'description' => 'nullable|min:10|max:60',
            'price' => 'nullable|required|numeric|between:0,9999999999999.99',
            'discount' => 'numeric|min:0|max:100',
+           'file' => 'image'
 
         ], $messages);
 
@@ -61,6 +64,8 @@ class ProductController extends Controller
         $description = $request->input('description');
         $price = $request->input('price');
         $discount = $request->input('discount');
+        $file = $request->file('image-1');
+        
         
 
         $productModel = new Product();
@@ -70,6 +75,22 @@ class ProductController extends Controller
         $productModel->price = $price;
         $productModel->discount = $discount;
         $productModel->save();
+
+        $productId = $productModel->id;
+        $productTitleSlug = Str::slug($productModel->title);
+
+        if (isset($file) and !empty($file)) {
+            $fileExtension = $file->getClientOriginalExtension();
+            $fileName = $productTitleSlug . '-' . time() . '.' . $fileExtension;
+            
+            $destinationPath = public_path('/files/images/products');
+            $file->move($destinationPath, $fileName);
+
+            $ProductImagesModel = new ProductImage();
+            $ProductImagesModel->product_id = $productId;
+            $ProductImagesModel->image = $fileName;
+
+        }
 
         return Response()->json([
             'success' => true, 
