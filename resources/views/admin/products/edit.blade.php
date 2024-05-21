@@ -64,6 +64,32 @@
                                         <small>(sólo valor numérico)</small>
                                     </div>
                                 </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label class="control-label">Imagen *</label>
+                                        <input type="file" name="image-1" class="form-control">
+                                    </div>
+
+                                    <div class="col-md-6 pt-4">
+                                        <label class="control-label">Imágenes del producto</label>
+                                        @if (isset($productImages) && count($productImages) > 0)
+                                            @foreach ($productImages as $productImage)
+                                                <div class="mb-2 admin-product-thumbnails">
+                                                    <div class="thumbnail-wrapper">
+                                                        <img src="{{ asset('public/files/images/products/' . $productImage->image) }}" class="thumbnail" alt="product image">
+                                                        <div class="buttons">
+                                                            <a href="{{ asset('public/files/images/products/' . $productImage->image) }}" target="_blank" class="button"><i class="fa fa-eye text-success"></i></a>
+                                                            <a href="" class="button"><i class="fa fa-trash text-danger"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <p>(Este producto no tiene imágenes)</p>
+                                        @endif
+                                    </div>
+                                </div>
+
 
                                 <div class="row mt-3">
                                     <div class="col-md-4 float-end">

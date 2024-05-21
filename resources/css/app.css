@@ -1,6 +1,12 @@
+:root {
+    --primary-soft: #4e73df8f;
+}
+
 * {
     box-sizing: border-box;
 }
+
+
 
 /* Test classes */
 .bg-pink {background: pink}
@@ -25,3 +31,29 @@
 .text-large {
     font-size: 3em!important;
 }
+
+.admin-product-thumbnails {background: white; display: flex; flex-direction: row;}
+
+.admin-product-thumbnails .thumbnail-wrapper {
+    width: fit-content;
+    border: 1px solid var(--primary-soft);
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0.25rem;
+    padding: 0.25rem;
+}
+
+.admin-product-thumbnails .thumbnail-wrapper img.thumbnail {
+    width: 5rem;
+    max-width: 100%;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+}
+
+.admin-product-thumbnails .thumbnail-wrapper .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+

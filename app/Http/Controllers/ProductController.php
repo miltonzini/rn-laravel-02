@@ -89,6 +89,8 @@ class ProductController extends Controller
             $ProductImagesModel = new ProductImage();
             $ProductImagesModel->product_id = $productId;
             $ProductImagesModel->image = $fileName;
+            $ProductImagesModel->save();
+
 
         }
 
@@ -108,9 +110,14 @@ class ProductController extends Controller
         ->orderBy('title', 'asc')
         ->get();
 
+        $productImages = ProductImage::select('id', 'product_id', 'image')
+        ->where('product_id', $id)
+        ->orderBy('id', 'asc')
+        ->get();
+
 
         $scripts = ['products.js'];
-        return view('admin.products.edit', compact('productData', 'categories', 'scripts'));
+        return view('admin.products.edit', compact('productData', 'categories', 'productImages', 'scripts'));
     }
 
     public function update($id, Request $request) {
