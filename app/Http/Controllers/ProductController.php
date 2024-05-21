@@ -54,7 +54,7 @@ class ProductController extends Controller
            'category' => 'required|exists:categories,id',
            'description' => 'nullable|min:10|max:60',
            'price' => 'nullable|required|numeric|between:0,9999999999999.99',
-           'discount' => 'numeric|min:0|max:100',
+           'discount' => 'nullable|numeric|min:0|max:100',
            'file' => 'image'
 
         ], $messages);
@@ -136,7 +136,7 @@ class ProductController extends Controller
             'category' => 'required|exists:categories,id',
             'description' => 'nullable|min:10|max:60',
             'price' => 'nullable|required|numeric|between:0,9999999999999.99',
-            'discount' => 'numeric|min:0|max:100',
+            'discount' => 'nullable|numeric|min:0|max:100',
         ], $messages);
 
         $title = $request->input('title');

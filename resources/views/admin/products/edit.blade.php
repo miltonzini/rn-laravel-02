@@ -61,7 +61,7 @@
                                     <div class="col-md-6">
                                         <label class="control-label">Descuento</label>
                                         <input type="text" name="discount" placeholder="Descuento" class="form-control"  value="{{ $productData->discount }}">
-                                        <small>Dejar "0" o vacío si no aplica</small>
+                                        <small>(sólo valor numérico)</small>
                                     </div>
                                 </div>
 
