@@ -64,7 +64,7 @@
                                         <small>(sólo valor numérico)</small>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
+                                <!-- <div class="row mt-3">
                                     <div class="col-md-6">
                                         <label class="control-label">Imagen *</label>
                                         <input type="file" name="image-1" class="form-control">
@@ -88,7 +88,7 @@
                                             <p>(Este producto no tiene imágenes)</p>
                                         @endif
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <div class="row mt-3">

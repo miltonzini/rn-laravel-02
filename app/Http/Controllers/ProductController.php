@@ -55,7 +55,7 @@ class ProductController extends Controller
            'description' => 'nullable|min:10|max:60',
            'price' => 'nullable|required|numeric|between:0,9999999999999.99',
            'discount' => 'nullable|numeric|min:0|max:100',
-           'file' => 'image'
+           //'file' => 'image'
 
         ], $messages);
 
@@ -64,7 +64,7 @@ class ProductController extends Controller
         $description = $request->input('description');
         $price = $request->input('price');
         $discount = $request->input('discount');
-        $file = $request->file('image-1');
+        // $file = $request->file('image-1');
         
         if(!$discount) {$discount = 0;}
 
@@ -76,23 +76,23 @@ class ProductController extends Controller
         $productModel->discount = $discount;
         $productModel->save();
 
-        $productId = $productModel->id;
-        $productTitleSlug = Str::slug($productModel->title);
+        // $productId = $productModel->id;
+        // $productTitleSlug = Str::slug($productModel->title);
 
-        if (isset($file) and !empty($file)) {
-            $fileExtension = $file->getClientOriginalExtension();
-            $fileName = $productTitleSlug . '-' . time() . '.' . $fileExtension;
+        // if (isset($file) and !empty($file)) {
+        //     $fileExtension = $file->getClientOriginalExtension();
+        //     $fileName = $productTitleSlug . '-' . time() . '.' . $fileExtension;
             
-            $destinationPath = public_path('/files/images/products');
-            $file->move($destinationPath, $fileName);
+        //     $destinationPath = public_path('/files/images/products');
+        //     $file->move($destinationPath, $fileName);
 
-            $ProductImagesModel = new ProductImage();
-            $ProductImagesModel->product_id = $productId;
-            $ProductImagesModel->image = $fileName;
-            $ProductImagesModel->save();
+        //     $ProductImagesModel = new ProductImage();
+        //     $ProductImagesModel->product_id = $productId;
+        //     $ProductImagesModel->image = $fileName;
+        //     $ProductImagesModel->save();
 
 
-        }
+        // }
 
         return Response()->json([
             'success' => true, 
@@ -110,14 +110,15 @@ class ProductController extends Controller
         ->orderBy('title', 'asc')
         ->get();
 
-        $productImages = ProductImage::select('id', 'product_id', 'image')
-        ->where('product_id', $id)
-        ->orderBy('id', 'asc')
-        ->get();
+        // $productImages = ProductImage::select('id', 'product_id', 'image')
+        // ->where('product_id', $id)
+        // ->orderBy('id', 'asc')
+        // ->get();
 
 
         $scripts = ['products.js'];
-        return view('admin.products.edit', compact('productData', 'categories', 'productImages', 'scripts'));
+        // return view('admin.products.edit', compact('productData', 'categories', 'productImages', 'scripts'));
+        return view('admin.products.edit', compact('productData', 'categories', 'scripts'));
     }
 
     public function update($id, Request $request) {
