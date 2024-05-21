@@ -47,7 +47,7 @@
                                         @foreach($products as $product)
                                         <tr>
                                             <td>{{ $product->title }}</td>
-                                            <td>{!! $product->category_id ? $product->category->title : '<span class="text-muted">sin categoría</span>' !!}</td>
+                                            <td>{!! $product->category_id ? $product->category->title : '<span class="text-muted">Sin categoría</span>' !!}</td>
                                             @php
                                                 $price = $product->price;
                                                 $discount = $product->discount;
@@ -61,11 +61,11 @@
                                             @endphp
                                             <td>
                                                 @if ($showDiscount)                                                    
-                                                    <del><span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ number_format($price, 2)}}</span></del>
-                                                    <span class="price-with-discount text-success"><strong>${{ $priceWithDiscount}}</strong></span>
+                                                    <span class="price-with-discount text-success"><strong>${{ numberFormat($priceWithDiscount)}}</strong></span>
+                                                    <del><span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ numberFormat($price)}}</span></del>
                                                     <span class="disclaimer text-muted">(descuento del {{ $discount }}%) </span>
                                                 @else
-                                                    <span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ number_format($price, 2)}}</span>
+                                                    <span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ numberFormat($price)}}</span>
                                                 @endif
                                             </td>
                                             <td>
