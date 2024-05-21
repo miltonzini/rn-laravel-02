@@ -66,7 +66,7 @@ class ProductController extends Controller
         $discount = $request->input('discount');
         $file = $request->file('image-1');
         
-        
+        if(!$discount) {$discount = 0;}
 
         $productModel = new Product();
         $productModel->title = $title;
@@ -144,6 +144,8 @@ class ProductController extends Controller
         $description = $request->input('description');
         $price = $request->input('price');
         $discount = $request->input('discount');
+
+        if(!$discount) {$discount = 0;}
 
         Product::where('id', $id)->update([
             'title' => $title,
