@@ -154,4 +154,16 @@ class UserController extends Controller
             'message' => 'Usuario eliminado con éxito'
         ]);
     }
+
+    public function search(Request $request) {
+        $search = $request->search;
+        $users = User::where('name', 'like', "%$search%")
+                    ->orWhere('surname', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%")
+                    ->paginate(10);
+        $usersCount = $users->total();
+        $scripts = ['users.js'];
+        return view('admin.users.index', compact('users', 'usersCount', 'scripts', 'search'));
+
+    }
 }

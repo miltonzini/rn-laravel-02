@@ -22,6 +22,7 @@ Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])-
         Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard'); // Mostrar Dashboard
         
         Route::get('/users/index', [UserController::class, 'index'])->name('admin.users.index'); // Listar usuarios
+        Route::post('/users/index', [UserController::class, 'search'])->name('admin.users.index'); // Buscar en el listado de usuarios
         Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit'); // Mostrar formulario para editar usuario
         Route::post('/users/update/{id}', [UserController::class, 'update'])->name('admin.users.update'); // Actualizar usuario en la base de datos
         Route::delete('/users/delete/{id}', [UserController::class, 'delete'])->name('admin.users.delete'); // Eliminar usuario de ka base de datos

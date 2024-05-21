@@ -15,12 +15,28 @@
 
                 <div class="container-fluid">
                     <h1 class="h3 mb-2 text-gray-800">Listado de usuarios</h1>
-                    @if (isset($usersCount))                                            
-                    <p class="mb-4">Total registrados: {{ $usersCount }}</p>
+                    @if (isset($usersCount) && !isset($search))
+                        <p class="mb-4">Total registrados: {{ $usersCount }}</p>
                     @endif
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                            <form action="{{ route('admin.users.index') }}" method="post" class="search-form ">
+                                @csrf
+                                <div class="input-group input-group-sm" style="">
+                                    <input type="text" name="search" class="form-control float-right" placeholder="Buscar usuario (nombre, apellido ó email)" value="{{ isset($search) ? $search : '' }}">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            @if (isset($search) && isset($usersCount))
+                            <p class="mb-4">Resultados: <strong>{{ $usersCount }}</strong></p>
+                            @endif
+
                             @if (!empty($users) && count($users) > 0 )
                                 <div class="table-responsive">
                                     <table class="table table-bordered" width="100%" cellspacing="0">
