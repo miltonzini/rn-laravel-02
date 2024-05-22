@@ -64,7 +64,7 @@ function createUser(action, method, data) {
                     text: response.message,
                     icon: "success"
                 }).then(function(){
-                    window.location.href = url + '/login';
+                    window.location.href = url + '/';
                 });
             }
         },
@@ -112,7 +112,7 @@ function updateUser(action, method, data) {
                     text: response.message,
                     icon: "success"
                 }).then(function(){
-                    window.location.href = url + '/admin/users/index';
+                    window.location.href = url + '/admin/listado-usuarios';
                 });
                 
             }
@@ -143,7 +143,7 @@ $(document).on('submit', '#edit-user-form', function(event) {
 
 function deleteUser(userId) {
     $.ajax({
-        url: url + '/admin/users/delete/' + userId,
+        url: url + '/admin/usuarios/delete/' + userId,
         type: 'delete',
         data: null,
         dataType: 'json',
@@ -162,7 +162,7 @@ function deleteUser(userId) {
                     icon: "success"
                 }).then(function(){
                     location.reload();
-                });                
+                });
             } else {
                 Swal.fire({
                     title: "Error",

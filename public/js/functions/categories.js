@@ -70,7 +70,7 @@ function updateCategory(action, method, data) {
                     text: response.message,
                     icon: "success"
                 }).then(function(){
-                    window.location.href = url + '/admin/categories/index';
+                    window.location.href = url + '/admin/listado-categorias';
                 });
                 
             }
@@ -102,7 +102,7 @@ $(document).on('submit', '#edit-category-form', function(event) {
 
 function deleteCategory(categoryId) {
     $.ajax({
-        url: url + '/admin/categories/delete/' + categoryId,
+        url: url + '/admin/categorias/delete/' + categoryId,
         type: 'delete',
         data: null,
         dataType: 'json',
