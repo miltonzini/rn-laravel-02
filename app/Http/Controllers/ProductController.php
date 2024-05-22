@@ -70,7 +70,7 @@ class ProductController extends Controller
 
         $productModel = new Product();
         $productModel->title = $title;
-        $productModel->category_id = $request->input('category');
+        $productModel->category_id = $category;
         $productModel->description = $description;
         $productModel->price = $price;
         $productModel->discount = $discount;
