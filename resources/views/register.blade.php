@@ -1,4 +1,4 @@
-@section('title', 'Register')
+@section('title', 'Registrarse')
 <x-adminLayout>
 <body class="bg-gradient-primary">
 

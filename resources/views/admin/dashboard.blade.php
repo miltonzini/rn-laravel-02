@@ -1,4 +1,4 @@
-@section('title', 'Dashboard')
+@section('title', 'Admin | Dashboard')
 <x-adminLayout>
 <body id="page-top">
 

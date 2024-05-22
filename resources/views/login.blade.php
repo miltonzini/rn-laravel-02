@@ -1,4 +1,4 @@
-@section('title', 'Login')
+@section('title', 'Iniciar Sesión')
 <x-adminLayout>
 <body class="bg-gradient-primary">
 

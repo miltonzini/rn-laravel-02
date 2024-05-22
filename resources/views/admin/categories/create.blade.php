@@ -1,4 +1,4 @@
-@section('title', 'Admin / Categories / Create')
+@section('title', 'Admin | Crear Categoría')
 <x-adminLayout>
 <body id="page-top">
 

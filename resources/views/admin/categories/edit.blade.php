@@ -1,4 +1,4 @@
-@section('title', 'Admin / Categories / Edit')
+@section('title', 'Admin | Editar Categoría')
 <x-adminLayout>
 <body id="page-top">
 

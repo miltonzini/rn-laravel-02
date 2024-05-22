@@ -1,4 +1,4 @@
-@section('title', 'Admin / Products / Edit')
+@section('title', 'Admin | Editar Producto')
 <x-adminLayout>
 <body id="page-top">
 
