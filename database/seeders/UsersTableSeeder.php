@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'Lucas', 'surname' => 'Ferro', 'email' => 'lucas.ferro@rednodo.com', 'password' => 'admin'],
             ['name' => 'Lucas', 'surname' => 'Marini', 'email' => 'lucas.marini@rednodo.com', 'password' => 'admin'],
             ['name' => 'Juan', 'surname' => 'Marini', 'email' => 'juan.marini@rednodo.com', 'password' => 'admin'],
-            
+
             ['name' => 'Gonza', 'surname' => 'Ponieman', 'email' => 'gonzalo.ponieman@rednodo.com', 'password' => 'admin'],
             ['name' => 'Juan', 'surname' => 'López', 'email' => 'juan.perez@mail.com', 'password' => 'passjuanperez123F+'],
             ['name' => 'María', 'surname' => 'García', 'email' => 'maria.garcia@mail.com', 'password' => 'passmariagarcia123F+'],
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
 
         foreach ($users as $user) {
             User::updateOrCreate(
-                ['email' => $user['email']], // Busca el usuario por su email
+                ['email' => $user['email']],
                 [
                     'name' => $user['name'],
                     'surname' => $user['surname'],

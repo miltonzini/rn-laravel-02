@@ -12,7 +12,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // Crear o actualizar categorías de ejemplo
         Category::updateOrCreate(['title' => 'Gral']);
         Category::updateOrCreate(['title' => 'Librería']);
         Category::updateOrCreate(['title' => 'Hogar']);
