@@ -15,12 +15,13 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             ['name' => 'Juan', 'surname' => 'Pérez', 'email' => 'admin@admin.com', 'password' => 'admin'],
-            ['name' => 'Milton', 'surname' => 'Zini', 'email' => 'milton.zini@rednodo.com', 'password' => 'admin'],
-            ['name' => 'Lucas', 'surname' => 'Ferro', 'email' => 'lucas.ferro@rednodo.com', 'password' => 'admin'],
-            ['name' => 'Lucas', 'surname' => 'Marini', 'email' => 'lucas.marini@rednodo.com', 'password' => 'admin'],
-            ['name' => 'Juan', 'surname' => 'Marini', 'email' => 'juan.marini@rednodo.com', 'password' => 'admin'],
 
-            ['name' => 'Gonza', 'surname' => 'Ponieman', 'email' => 'gonzalo.ponieman@rednodo.com', 'password' => 'admin'],
+            ['name' => 'Gonza', 'surname' => 'Ponieman', 'email' => 'gonzalo.ponieman@admin.com', 'password' => 'admin'],
+            ['name' => 'Juan', 'surname' => 'Marini', 'email' => 'juan.marini@admin.com', 'password' => 'admin'],
+            ['name' => 'Lucas', 'surname' => 'Ferro', 'email' => 'lucas.ferro@admin.com', 'password' => 'admin'],
+            ['name' => 'Lucas', 'surname' => 'Marini', 'email' => 'lucas.marini@admin.com', 'password' => 'admin'],
+            ['name' => 'Milton', 'surname' => 'Zini', 'email' => 'milton.zini@admin.com', 'password' => 'admin'],
+
             ['name' => 'Juan', 'surname' => 'López', 'email' => 'juan.perez@mail.com', 'password' => 'passjuanperez123F+'],
             ['name' => 'María', 'surname' => 'García', 'email' => 'maria.garcia@mail.com', 'password' => 'passmariagarcia123F+'],
             ['name' => 'Luis', 'surname' => 'Rodríguez', 'email' => 'luis.rodriguez@mail.com', 'password' => 'passluisrodriguez123F+'],
