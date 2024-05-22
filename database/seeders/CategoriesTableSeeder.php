@@ -22,8 +22,9 @@ class CategoriesTableSeeder extends Seeder
         Category::updateOrCreate(['title' => 'Jardinería']);
         Category::updateOrCreate(['title' => 'Salud']);
         Category::updateOrCreate(['title' => 'Belleza']);
-        Category::updateOrCreate(['title' => 'Vinoteca']);
+        Category::updateOrCreate(['title' => 'Bodega']);
         Category::updateOrCreate(['title' => 'Fiambrería']);
         Category::updateOrCreate(['title' => 'Vestimenta']);
+        Category::updateOrCreate(['title' => 'Almacén']);
     }
 }
