@@ -91,4 +91,11 @@ class LoginController extends Controller
     return redirect()->route('login');
 }
 
+    public function showSessionInfo() {
+        if (Session::has('administrator')) {
+            return response()->json(Session::get('administrator'));
+        } else {
+            return redirect()->route('login');
+        }
+    }
 }

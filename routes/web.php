@@ -9,7 +9,6 @@ use App\Http\Controllers\pages\DashboardController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\PreventBackHistoryMiddleware;
 
-// Route::get('/', function () {return view('login');})->name('home');
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');// Mostrar forumlario de Login
 Route::post('/login-user', [LoginController::class, 'login'])->name('login-user');
 Route::get('/logout-user', [LoginController::class, 'logout'])->name('logout-user');
@@ -43,3 +42,6 @@ Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])-
     });
     
 });
+
+// Utility routes
+Route::get('/session-info', [LoginController::class, 'showSessionInfo'])->name('user-session-info'); // Mostrar la información de la sesión activa
