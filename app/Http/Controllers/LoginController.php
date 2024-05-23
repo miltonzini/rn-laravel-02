@@ -85,11 +85,11 @@ class LoginController extends Controller
     }
 
     public function logout()
-{
+    {
     Auth::logout();
     Session::flush();
     return redirect()->route('login');
-}
+    }
 
     public function showSessionInfo() {
         if (Session::has('administrator')) {

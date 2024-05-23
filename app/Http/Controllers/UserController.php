@@ -137,6 +137,16 @@ class UserController extends Controller
             ]);
         }
 
+        if ($id == Session('administrator')['id']) {
+            Session::put('administrator', [
+                'id' => $id,
+                'name' => $name,
+                'surname' => $surname,
+                'email' => $email,
+            ]);
+        }
+    
+
         return Response()->json([
             'success' => true, 
             'message' => 'Usuario editado con éxito'
