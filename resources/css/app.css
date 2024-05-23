@@ -41,10 +41,11 @@
     font-size: 3em!important;
 }
 
-.admin-product-thumbnails {background: white; display: flex; flex-direction: row;}
+.admin-product-thumbnails {background: white; display: flex; flex-direction: row;flex-wrap:wrap;}
 
 .admin-product-thumbnails .thumbnail-wrapper {
     width: fit-content;
+    min-width: fit-content;
     border: 1px solid var(--primary-soft);
     border-radius: 0.25rem;
     display: flex;

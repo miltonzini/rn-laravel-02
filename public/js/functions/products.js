@@ -69,7 +69,7 @@ function updateProduct(action, method, data) {
                     text: response.message,
                     icon: "success"
                 }).then(function(){
-                    window.location.href = url + '/admin/listado-productos';
+                    location.reload();
                 });
                 
             }

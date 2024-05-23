@@ -65,12 +65,12 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="row mt-3">
+                                <div class="row mt-3">
                                     <div class="col-md-12">
                                         <label class="control-label">Imagen *</label>
                                         <input type="file" name="image-1" class="form-control">
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-4 float-end">
