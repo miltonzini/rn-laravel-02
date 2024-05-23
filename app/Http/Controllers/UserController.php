@@ -22,14 +22,16 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        
+
         $messages = [
             'name.required' => 'Debes ingresar tu nombre',
             'name.min' => 'El nombre debe tener al menos 3 caracteres',
             'name.max' => 'El nombre debe tener un máximo de 20 caracteres',
+            'name.regex' => 'El nombre sólo puede contener letras y espacios',
             'surname.required' => 'Debes ingresar tu apellido',
             'surname.min' => 'El apellido debe tener al menos 3 caracteres',
             'surname.max' => 'El apellido debe tener un máximo de 20 caracteres',
+            'surname.regex' => 'El apellido sólo puede contener letras, espacios y comillas simples',
             'email.required' => 'Debes ingresar tu email',
             'email.max' => 'El email debe tener un máximo de 60 caracteres',
             'email.email' => 'El email es inválido',
@@ -39,10 +41,14 @@ class UserController extends Controller
             'repeat-password.required' => 'Complete el campo "repetir contraseña"',
             'repeat-password.same' => 'Las contraseñas no coinciden',
         ];
+
+        // Expresiones regulares para nombre y apellido
+        $nameRegex = '/^[a-zA-Z\s´]+$/';
+        $surnameRegex = '/^[a-zA-Z\s\'´]+$/';
         
         $validations = $request->validate([
-           'name' => 'required|min:3|max:20',
-           'surname' => 'required|min:3|max:20',
+           'name' => ['required', 'min:2', 'max:25', 'regex:' . $nameRegex],
+           'surname' => ['required', 'min:3', 'max:20', 'regex:' . $surnameRegex],
            'email' => 'required|max:60|email|unique:users',
            'password' => 'required|min:5',
            'repeat-password' => 'required|same:password',
@@ -83,9 +89,11 @@ class UserController extends Controller
             'name.required' => 'Debes ingresar el nombre del usuario',
             'name.min' => 'El nombre debe tener al menos 3 caracteres',
             'name.max' => 'El nombre debe tener un máximo de 20 caracteres',
+            'name.regex' => 'El nombre sólo puede contener letras y espacios',
             'surname.required' => 'Debes ingresar el apellido del usuario',
             'surname.min' => 'El apellido debe tener al menos 3 caracteres',
             'surname.max' => 'El apellido debe tener un máximo de 20 caracteres',
+            'surname.regex' => 'El apellido sólo puede contener letras, espacios y comillas simples',
             'email.required' => 'Debes ingresar el email',
             'email.max' => 'El email debe tener un máximo de 60 caracteres',
             'email.email' => 'El email es inválido',
@@ -96,9 +104,13 @@ class UserController extends Controller
             'repeat-password.same' => 'Las contraseñas no coinciden',
         ];
         
+        // Expresiones regulares para nombre y apellido
+        $nameRegex = '/^[a-zA-Z\s´]+$/';
+        $surnameRegex = '/^[a-zA-Z\s\'´]+$/';
+
         $validations = $request->validate([
-           'name' => 'required|min:3|max:20',
-           'surname' => 'required|min:3|max:20',
+           'name' => ['required', 'min:2', 'max:25', 'regex:' . $nameRegex],
+           'surname' => ['required', 'min:3', 'max:20', 'regex:' . $surnameRegex],
            'email' => 'required|max:60|email|unique:users,email,'.$id.',id',
            'password' => 'nullable|min:5',
            'repeat-password' => 'nullable|same:password',
