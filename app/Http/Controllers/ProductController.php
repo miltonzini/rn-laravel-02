@@ -206,4 +206,37 @@ class ProductController extends Controller
             'message' => 'Producto eliminado con éxito'
         ]);
     }
+
+    public function deleteProductImage($ImgId) {
+        $image = ProductImage::find($ImgId);
+
+        if(!$image) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'No existe imagen con dicho ID'
+            ]);
+        }
+        $fileName = $image->image;
+        $filePath = public_path('/files/images/products/' . $fileName);
+
+
+        $image->delete();
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        } else {
+            return Response()->json([
+                'success' => false,
+                'message' => 'No el archivo de imagen'
+            ]);
+        }
+
+
+        return Response()->json([
+            'success' => true, 
+            'message' => 'Imagen eliminada con éxito'
+
+        ]);
+
+    }
 }

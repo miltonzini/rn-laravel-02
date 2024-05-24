@@ -151,3 +151,46 @@ $(document).on('click', '.delete-product-button', function() {
     let productId = $(this).attr('data-product-id');
     deleteProduct(productId);
 })
+
+function deleteProductImage(imageId) {
+    $.ajax({
+        url: url + '/admin/products/delete-image/' + imageId,
+        type: 'delete',
+        data: null,
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.success) {
+                Swal.fire({
+                    title: "Mensaje",
+                    text: response.message,
+                    icon: "success"
+                }).then(function(){
+                    location.reload();
+                });                
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: response.message,
+                    icon: "error"
+                });
+            }
+        },
+        error: function(xhr) {
+            $.each(xhr.responseJSON.errors, function(index, value) {
+                Swal.fire({
+                    title: "Error",
+                    text: value,
+                    icon: "warning"
+                });
+            });
+        }
+    })
+}
+
+$(document).on('click', '.delete-product-image-anchor', function() {
+    let imageId = $(this).attr('data-product-image-id');
+    deleteProductImage(imageId);
+})

@@ -79,7 +79,7 @@
                                                         <img src="{{ asset('public/files/images/products/' . $productImage->image) }}" class="thumbnail" alt="product image">
                                                         <div class="buttons">
                                                             <a href="{{ asset('public/files/images/products/' . $productImage->image) }}" target="_blank" class="button"><i class="fa fa-eye text-success"></i></a>
-                                                            <a href="" class="button"><i class="fa fa-trash text-danger"></i></a>
+                                                            <a href="javascript:void(0)" class="button delete-product-image-anchor" data-product-image-id="{{ $productImage->id }}"><i class="fa fa-trash text-danger"></i></a>
                                                         </div>
                                                     </div>
                                                 @endforeach
