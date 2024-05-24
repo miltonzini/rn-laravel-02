@@ -199,8 +199,33 @@ class ProductController extends Controller
             ]);
         }
 
+        $productImages = ProductImage::select('id', 'product_id', 'image')
+        ->where('product_id', $id)
+        ->get();
 
+
+        $productImagesNames = [];
+        foreach ($productImages as $productImage) {
+            $productImagesNames[] = $productImage->image;
+        }
+        
+        $productImagesFilePath = public_path('/files/images/products/');
+
+        $filesInProductDirectory = scandir($productImagesFilePath);
+        foreach ($filesInProductDirectory as $file) {
+            foreach ($productImagesNames as $imageName) {
+                if ($imageName === $file) {
+                    $filePath = $productImagesFilePath . $file;
+                    unlink($filePath);
+                }
+            }
+        }
+
+        ProductImage::where('product_id', $id)->delete();
+        
         Product::where('id', $id)->delete();
+
+
         return Response()->json([
             'success' => true,
             'message' => 'Producto eliminado con éxito'
@@ -227,7 +252,7 @@ class ProductController extends Controller
         } else {
             return Response()->json([
                 'success' => false,
-                'message' => 'No el archivo de imagen'
+                'message' => 'No se encontró el archivo de imagen'
             ]);
         }
 

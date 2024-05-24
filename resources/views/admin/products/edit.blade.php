@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-6">
-                                        <label class="control-label">Imagen *</label>
+                                        <label class="control-label">Agregar imágenes</label>
                                         <input type="file" name="image-1" class="form-control">
                                     </div>
 
