@@ -192,7 +192,6 @@ class ProductController extends Controller
         }
 
         if ($updateExistingImagesNames) {
-            $originalProductTitleSlug = Str::slug($originalProductTitle);
             $productImages = ProductImage::where('product_id', $id)->get();
             $productImagesFilePath = public_path('/files/images/products/');
 
