@@ -83,7 +83,8 @@ class ProductController extends Controller
 
         if (isset($file) and !empty($file)) {
             $fileExtension = $file->getClientOriginalExtension();
-            $fileName = $productTitleSlug . '-' . time() . '.' . $fileExtension;
+            $uniqueTag = md5($productTitleSlug . rand(0,9999));
+            $fileName = $productTitleSlug . '-' . $uniqueTag . '.' . $fileExtension;
             
             $destinationPath = public_path('/files/images/products');
             $file->move($destinationPath, $fileName);
@@ -177,7 +178,8 @@ class ProductController extends Controller
 
         if (isset($file) and !empty($file)) {
             $fileExtension = $file->getClientOriginalExtension();
-            $fileName = $productTitleSlug . '-' . time() . '.' . $fileExtension;
+            $uniqueTag = md5($productTitleSlug . rand(0,9999));
+            $fileName = $productTitleSlug . '-' . $uniqueTag . '.' . $fileExtension;
             
             $destinationPath = public_path('/files/images/products');
             $file->move($destinationPath, $fileName);
@@ -197,7 +199,8 @@ class ProductController extends Controller
             foreach ($productImages as $productImage) {
                 $originalImagePath = $productImagesFilePath . $productImage->image;
                 $imageExtension = pathinfo($originalImagePath, PATHINFO_EXTENSION);
-                $newFileName = $productTitleSlug . '-' . time() . '.' . $imageExtension;
+                $uniqueTag = md5($productTitleSlug . rand(0,9999));
+                $newFileName = $productTitleSlug . '-' . $uniqueTag . '.' . $imageExtension;
 
                 rename($originalImagePath, $productImagesFilePath . $newFileName);
 
@@ -207,7 +210,7 @@ class ProductController extends Controller
 
             return response()->json([
                 'success' => true, 
-                'message' => 'El nombre del producto y las imágenes han sido actualizados correctamente.'
+                'message' => 'Se actualizó el producto y el nombre de sus imágenes'
             ]);
         }
         
