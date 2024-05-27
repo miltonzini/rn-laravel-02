@@ -159,6 +159,12 @@ class ProductController extends Controller
 
         if(!$discount) {$discount = 0;}
 
+        $originalProductTitle = Product::where('id', $id)->pluck('title')->first();
+        $updateExistingImagesNames = false;
+        if ($originalProductTitle != $title) {
+            $updateExistingImagesNames = true;
+        };
+
         Product::where('id', $id)->update([
             'title' => $title,
             'category_id' => $category,
@@ -181,6 +187,28 @@ class ProductController extends Controller
             $ProductImagesModel->image = $fileName;
             $ProductImagesModel->save();
 
+        }
+
+        if ($updateExistingImagesNames) {
+            $originalProductTitleSlug = Str::slug($originalProductTitle);
+            $productImages = ProductImage::where('product_id', $id)->get();
+            $productImagesFilePath = public_path('/files/images/products/');
+
+            foreach ($productImages as $productImage) {
+                $originalImagePath = $productImagesFilePath . $productImage->image;
+                $imageExtension = pathinfo($originalImagePath, PATHINFO_EXTENSION);
+                $newFileName = $productTitleSlug . '-' . time() . '.' . $imageExtension;
+
+                rename($originalImagePath, $productImagesFilePath . $newFileName);
+
+                $productImage->image = $newFileName;
+                $productImage->save();
+            }
+
+            return response()->json([
+                'success' => true, 
+                'message' => 'El nombre del producto y las imágenes han sido actualizados correctamente.'
+            ]);
         }
         
         return Response()->json([
