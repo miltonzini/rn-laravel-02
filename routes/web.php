@@ -47,3 +47,4 @@ Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])-
 
 // Utility routes
 Route::get('/session-info', [LoginController::class, 'showSessionInfo'])->name('user-session-info'); // Mostrar la información de la sesión activa
+Route::get('/phpinfo', function () {phpinfo();})->name('phpinfo');
