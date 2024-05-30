@@ -7,6 +7,11 @@ use App\Models\Product;
 use App\Models\Category; 
 use App\Models\ProductImage;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Laravel\Facades\Image;
+
+
 
 class ProductController extends Controller
 {
@@ -87,13 +92,15 @@ class ProductController extends Controller
             $fileName = $productTitleSlug . '-' . $uniqueTag . '.' . $fileExtension;
             
             $destinationPath = public_path('/files/images/products');
-            $file->move($destinationPath, $fileName);
+
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
+            $image->save($destinationPath . '/' . $fileName);
 
             $ProductImagesModel = new ProductImage();
             $ProductImagesModel->product_id = $productId;
             $ProductImagesModel->image = $fileName;
             $ProductImagesModel->save();
-
 
         }
 
@@ -182,7 +189,10 @@ class ProductController extends Controller
             $fileName = $productTitleSlug . '-' . $uniqueTag . '.' . $fileExtension;
             
             $destinationPath = public_path('/files/images/products');
-            $file->move($destinationPath, $fileName);
+            
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
+            $image->save($destinationPath . '/' . $fileName);
 
             $ProductImagesModel = new ProductImage();
             $ProductImagesModel->product_id = $id;
