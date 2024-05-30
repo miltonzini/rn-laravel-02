@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\Laravel\Facades\Image;
-
+use Intervention\Image\Encoders\WebpEncoder;
 
 
 class ProductController extends Controller
@@ -87,19 +87,20 @@ class ProductController extends Controller
         $productTitleSlug = Str::slug($productModel->title);
 
         if (isset($file) and !empty($file)) {
-            $fileExtension = $file->getClientOriginalExtension();
             $uniqueTag = md5($productTitleSlug . rand(0,9999));
-            $fileName = $productTitleSlug . '-' . $uniqueTag . '.' . $fileExtension;
+            $finalFileName = $productTitleSlug . '-' . $uniqueTag . '.webp';
             
             $destinationPath = public_path('/files/images/products');
 
+            // Resize img, convert to webp and save file
             $manager = new ImageManager(new Driver());
             $image = $manager->read($file);
-            $image->save($destinationPath . '/' . $fileName);
+            $image = optimizeImage($image);
+            $image->save($destinationPath . '/' . $finalFileName);
 
             $ProductImagesModel = new ProductImage();
             $ProductImagesModel->product_id = $productId;
-            $ProductImagesModel->image = $fileName;
+            $ProductImagesModel->image = $finalFileName;
             $ProductImagesModel->save();
 
         }
@@ -184,19 +185,20 @@ class ProductController extends Controller
         $productTitleSlug = Str::slug($title);
 
         if (isset($file) and !empty($file)) {
-            $fileExtension = $file->getClientOriginalExtension();
             $uniqueTag = md5($productTitleSlug . rand(0,9999));
-            $fileName = $productTitleSlug . '-' . $uniqueTag . '.' . $fileExtension;
+            $finalFileName = $productTitleSlug . '-' . $uniqueTag . '.webp';
             
             $destinationPath = public_path('/files/images/products');
             
+            // Resize img, convert to webp and save file
             $manager = new ImageManager(new Driver());
             $image = $manager->read($file);
-            $image->save($destinationPath . '/' . $fileName);
+            $image = optimizeImage($image);
+            $image->save($destinationPath . '/' . $finalFileName);
 
             $ProductImagesModel = new ProductImage();
             $ProductImagesModel->product_id = $id;
-            $ProductImagesModel->image = $fileName;
+            $ProductImagesModel->image = $finalFileName;
             $ProductImagesModel->save();
 
         }
