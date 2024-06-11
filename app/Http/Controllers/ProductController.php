@@ -314,6 +314,8 @@ class ProductController extends Controller
         }
 
         ProductImage::where('product_id', $id)->delete();
+
+        ProductTagPivot::where('product_id', $id)->delete();
         
         Product::where('id', $id)->delete();
 
