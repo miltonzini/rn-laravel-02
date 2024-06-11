@@ -90,6 +90,16 @@
                                     </div>
                                 </div>
 
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Etiquetas</label>
+                                        <div class="checkboxes-wrapper">
+                                            @foreach ($productTags as $productTag )
+                                            <label class="product-tag"><input type="checkbox" name="product-tags[]" value="{{ $productTag->id }}" {{ in_array($productTag->id, $selectedProductTags) ? 'checked' : '' }}> {{ $productTag->tag }}</label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-4 float-end">

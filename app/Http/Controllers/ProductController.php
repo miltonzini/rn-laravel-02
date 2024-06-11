@@ -38,7 +38,7 @@ class ProductController extends Controller
         ->get();
 
         $scripts = ['products.js'];
-        return view('admin.products.create', compact('categories', 'scripts', 'productTags'));
+        return view('admin.products.create', compact('categories', 'productTags', 'scripts'));
     }
 
     public function store(Request $request) {
@@ -144,9 +144,15 @@ class ProductController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
+        $productTags = ProductTag::select('id', 'tag')
+        ->orderBy('tag', 'asc')
+        ->get();
+
+        $selectedProductTags = $productData->tags->pluck('id')->toArray();
+
 
         $scripts = ['products.js'];
-        return view('admin.products.edit', compact('productData', 'categories', 'productImages', 'scripts'));
+        return view('admin.products.edit', compact('productData', 'categories', 'productImages', 'productTags', 'selectedProductTags', 'scripts'));
     }
 
     public function update($id, Request $request) {
@@ -183,6 +189,7 @@ class ProductController extends Controller
         $price = $request->input('price');
         $discount = $request->input('discount');
         $file = $request->file('image-1');
+        $productTags = $request->input('product-tags');
 
         if(!$discount) {$discount = 0;}
 
@@ -241,6 +248,31 @@ class ProductController extends Controller
                 'success' => true, 
                 'message' => 'Se actualizó el producto y el nombre de sus imágenes'
             ]);
+        }
+
+        if (isset($productTags)) {
+            $productTags = collect($productTags);
+    
+            $currentProductTags = ProductTagPivot::where('product_id', $id)->pluck('product_tag_id');
+    
+            $productTagsToDelete = $currentProductTags->diff($productTags);
+            if ($productTagsToDelete->count() > 0) {
+                ProductTagPivot::where('product_id', $id)
+                    ->whereIn('product_tag_id', $productTagsToDelete)
+                    ->delete();
+            }
+    
+            $productTagsToAdd = $productTags->diff($currentProductTags);
+            if ($productTagsToAdd->count() > 0) {
+                foreach ($productTagsToAdd as $tag) {
+                    ProductTagPivot::create([
+                        'product_id' => $id,
+                        'product_tag_id' => $tag
+                    ]);
+                }
+            }
+        } else {
+            ProductTagPivot::where('product_id', $id)->delete();
         }
         
         return Response()->json([
