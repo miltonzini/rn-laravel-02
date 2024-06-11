@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product; 
 use App\Models\Category; 
 use App\Models\ProductImage;
+use App\Models\ProductTag;
+use App\Models\ProductTagPivot;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -31,8 +33,12 @@ class ProductController extends Controller
         ->orderBy('title', 'asc')
         ->get();
 
+        $productTags = ProductTag::select('id', 'tag')
+        ->orderBy('tag', 'asc')
+        ->get();
+
         $scripts = ['products.js'];
-        return view('admin.products.create', compact('categories', 'scripts'));
+        return view('admin.products.create', compact('categories', 'scripts', 'productTags'));
     }
 
     public function store(Request $request) {
@@ -72,6 +78,8 @@ class ProductController extends Controller
         $price = $request->input('price');
         $discount = $request->input('discount');
         $file = $request->file('image-1');
+        $productTags = $request->input('product-tags');
+
         
         if(!$discount) {$discount = 0;}
 
@@ -104,6 +112,16 @@ class ProductController extends Controller
             $ProductImagesModel->save();
 
         }
+
+        if (isset($productTags) and count($productTags) > 0) {
+            foreach ($productTags as $productTag) {
+                $ProductTagPivotModel = new ProductTagPivot();
+                $ProductTagPivotModel->product_id = $productId;
+                $ProductTagPivotModel->product_tag_id = $productTag;
+                $ProductTagPivotModel->save();
+            }
+        }
+        
 
         return Response()->json([
             'success' => true, 

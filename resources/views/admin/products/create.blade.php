@@ -71,7 +71,16 @@
                                         <input type="file" name="image-1" class="form-control">
                                     </div>
                                 </div>
-
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Etiquetas</label>
+                                        <div class="checkboxes-wrapper">
+                                            @foreach ($productTags as $productTag )
+                                            <label class="product-tag"><input type="checkbox" name="product-tags[]" value="{{ $productTag->id }}"> {{ $productTag->tag }}</label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row mt-3">
                                     <div class="col-md-4 float-end">
                                         <button type="submit" class="btn btn-info btn-sm" id="create-product-button">Registrar producto</button>
