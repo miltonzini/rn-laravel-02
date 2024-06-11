@@ -40,6 +40,7 @@
                                             <th>Producto</th>
                                             <th>Categoría</th>
                                             <th>Precio</th>
+                                            <th>Etiquetas</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -66,6 +67,17 @@
                                                     <span class="disclaimer text-muted">(descuento del {{ $discount }}%) </span>
                                                 @else
                                                     <span class="original-price {{ $showDiscount ? 'text-muted small' : '' }}">${{ numberFormat($price)}}</span>
+                                                @endif
+                                            </td>
+                                            <td class="tags">
+                                                @if ($product->tags and count($product->tags) > 0)
+                                                    <div class="tags-wrapper">
+                                                        @foreach ($product->tags as $tag )
+                                                            <div class="product-tag product-tag-sm">{{ $tag->tag }}</div>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    <p class="text-muted small">sin etiquetas</p>
                                                 @endif
                                             </td>
                                             <td>

@@ -78,6 +78,13 @@
     flex-direction: row;
     align-items: center;
     width: fit-content;
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
+}
+
+.product-tag-sm {
+    font-size: .7rem;
+    padding: 0.2rem 0.5rem;
 }
 
 .checkboxes-wrapper {
@@ -87,8 +94,6 @@
     flex-wrap: wrap;
 }
 .checkboxes-wrapper .product-tag {
-    padding: 0.25rem 1rem;
-    border-radius: 1rem;
     cursor: pointer;
 }
 .checkboxes-wrapper input {
@@ -96,3 +101,15 @@
     cursor: pointer;
 }
 
+
+table td.tags p {
+    margin-bottom: 0;
+}
+
+.tags-wrapper {
+    column-gap: 0.5rem;
+    row-gap: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
