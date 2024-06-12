@@ -47,7 +47,16 @@
                                     <tbody>
                                         @foreach($products as $product)
                                         <tr>
-                                            <td>{{ $product->title }}</td>
+                                            <td>
+                                                <span class="product-image">
+                                                    @if($product->images->isNotEmpty())
+                                                        <img class="table-item-thumb" src="{{ asset('public/files/images/products/' . $product->images->first()->image) }}" alt="{{ $product->title }}">
+                                                    @else
+                                                        <img class="table-item-thumb" src="{{ asset('public/files/images/products/product-image-placeholder.jpg') }}" alt="producto sin imagen">
+                                                    @endif
+                                                </span>
+                                                {{ $product->title }}
+                                            </td>
                                             <td>{!! $product->category_id ? $product->category->title : '<span class="text-muted">Sin categoría</span>' !!}</td>
                                             @php
                                                 $price = $product->price;

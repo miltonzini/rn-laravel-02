@@ -18,7 +18,7 @@ use Intervention\Image\Encoders\WebpEncoder;
 class ProductController extends Controller
 {
     public function index() {
-        $products = Product::with(['category:id,title', 'tags:id,tag'])->orderBy('id', 'desc')->paginate(20);
+        $products = Product::with(['category:id,title', 'tags:id,tag', 'images'])->orderBy('id', 'desc')->paginate(20);
         $products = Product::select('id', 'title', 'category_id', 'description', 'price', 'discount')
             ->with('category:id,title')
             ->orderBy('id', 'desc')

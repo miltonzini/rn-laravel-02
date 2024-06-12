@@ -121,6 +121,18 @@ table td.tags p {
 
 
 
+/* Tables */
+table .table-item-thumb {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.25rem;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+
+
+
 /* Sb-admin-2 Overrides  */
 .sidebar .sidebar-brand {
     height: fit-content!important;
