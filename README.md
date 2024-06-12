@@ -37,3 +37,18 @@
 ## Credenciales de prueba
 - **Usuario:** admin@admin.com
 - **Contraseña:** admin
+
+
+
+
+## API Endpoints
+
+**Base URL:** http://localhost/rn-laravel-02/api/v1
+
+
+* **GET /products**
+    * Listado de productos.
+* **GET /categories**
+    * Listado de categorías.
+* **GET /product-tags**
+    * Listado de etiquetas de producto.
