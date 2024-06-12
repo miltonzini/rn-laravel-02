@@ -1,6 +1,7 @@
 :root {
     --primary-soft: #4e73df8f;
     --primary-lighten: #d5dae7;
+    --success-lighten: #deffa8;
     --white: #fff;
 }
 
@@ -73,13 +74,14 @@
 
 .product-tag {
     font-size: .9rem;
-    background-color: var(--primary-lighten);
+    background-color: var(--success-lighten);
     display: flex;
     flex-direction: row;
     align-items: center;
     width: fit-content;
     padding: 0.25rem 1rem;
     border-radius: 1rem;
+    transition: all 300ms ease;
 }
 
 .product-tag-sm {
@@ -95,6 +97,9 @@
 }
 .checkboxes-wrapper .product-tag {
     cursor: pointer;
+}
+.checkboxes-wrapper .product-tag:hover {
+    background-color: var(--primary-soft);
 }
 .checkboxes-wrapper input {
     margin-right: 0.25rem;
@@ -112,4 +117,12 @@ table td.tags p {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+
+
+/* Sb-admin-2 Overrides  */
+.sidebar .sidebar-brand {
+    height: fit-content!important;
+    line-height: 1rem;
 }

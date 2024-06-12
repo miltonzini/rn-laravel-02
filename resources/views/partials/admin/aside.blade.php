@@ -7,7 +7,7 @@
                 <i class="fas fa-laugh-wink"></i>
             </div>
             <div class="sidebar-brand-text mx-3">
-            {{ Session('administrator')['name'] . ' ' . Session('administrator')['surname'] }}
+            <span class="name">{{ Session('administrator')['name'] . ' ' . Session('administrator')['surname'] }}</span>
             <span style="display: block;text-transform:none;font-size:0.8rem;font-weight: 200">{{ Session('administrator')['email'] }}</span>
             </div>
             <div>
