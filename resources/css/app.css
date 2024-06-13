@@ -70,6 +70,30 @@
 }
 
 
+.product-preview-modal .images-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+}
+.product-preview-modal .images-wrapper img.thumb {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.25rem;
+    object-fit: cover;
+    margin: 0.25rem;
+    }
+    
+.product-preview-modal .product-description p {
+    margin-bottom: 0;
+
+}
+.product-preview-modal .product-description h5 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+
 /* Product Tags */
 
 .product-tag {
@@ -106,7 +130,9 @@
     cursor: pointer;
 }
 
-
+table td, th {
+    vertical-align: middle!important;
+}
 table td.tags p {
     margin-bottom: 0;
 }

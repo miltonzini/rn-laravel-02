@@ -105,12 +105,66 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                <a href="javascript:void(0)" data-toggle="modal" data-target="#product-preview-modal-{{$product->id}}"><i class="fa fa-eye"></i></a>
+
+                                                |
+                                                
                                                 <a href="{{ route('admin.products.edit', ['id' => $product->id]) }}"><i class="fa fa-edit"></i></a>
 
                                                 |
 
                                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#product-delete-modal-{{$product->id}}"><i class="fa fa-trash"></i></a>
+                                                
+                                                
+                                                <div class="modal fade product-preview-modal" id="product-preview-modal-{{$product->id}}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header"><strong>{{$product->title}}</strong></div>
+                                                            <div class="modal-body">
+                                                                @if($product->images->isNotEmpty())
+                                                                    <div class="images-wrapper">
+                                                                        @foreach($product->images as $image)
+                                                                            <div class="image-item">
+                                                                                <img class="thumb" src="{{ asset('public/files/images/products/' . $image->image) }}" alt="{{ $product->title }}">
+                                                                            </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                @else
+                                                                    <p class="text-muted">No hay imágenes disponibles.</p>
+                                                                @endif
+                                                                <div class="product-description">
+                                                                    <p><strong>ID:</strong> {{$product->id}}</p>
+                                                                    <p><strong>Descripción:</strong> {!! $product->description ? $product->description : '<span class="text-muted">No disponible</span>' !!}</p>
+                                                                    <p><strong>Categoría:</strong> {!! $product->category_id ? $product->category->title : '<span class="text-muted">No disponible</span>' !!}</p>
+                                                                    
+                                                                    @if($showDiscount)       
+                                                                    <p><strong>Precio original:</strong> ${{ numberFormat($product->price)}}</p>
+                                                                    <p><strong>Descuento:</strong> {{ $product->discount }} %</p>
+                                                                    <p><strong>Precio con descuento:</strong> ${{ numberFormat($priceWithDiscount)}}</p>
+                                                                    @else
+                                                                    <p><strong>Precio:</strong> ${{ numberFormat($product->price) }}</p>
+                                                                    @endif
 
+                                                                    <h5>Etiquetas</h5>
+                                                                    @if ($product->tags and count($product->tags) > 0)
+                                                                        <div class="tags-wrapper">
+                                                                            @foreach ($product->tags as $tag )
+                                                                                <div class="product-tag product-tag-sm">{{ $tag->tag }}</div>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    @else
+                                                                        <p class="text-muted small">sin etiquetas</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                                <a class="btn btn-primary" href="{{ route('admin.products.edit', ['id' => $product->id]) }}">Editar</a>
+                                                            </div>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
                                                 <div class="modal fade" id="product-delete-modal-{{$product->id}}">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
