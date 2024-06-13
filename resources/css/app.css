@@ -62,7 +62,7 @@
 }
 
 .product-tag {
-    font-size: .9rem;
+    font-size: .9rem;   
     background-color: var(--success-lighten);
     display: flex;
     flex-direction: row;
@@ -194,3 +194,24 @@ table .table-item-thumb {
 }
 
 
+
+
+
+/* /////////////////////////////////////////////////////////
+    # View: API Docs
+///////////////////////////////////////////////////////////*/
+
+.http-method-tag {
+    font-weight: bold;
+    background-color: var(--primary-lighten);
+    padding: 0.15rem 0.25rem;
+}
+.http-method-tag.get-method {
+    background-color: #388f38;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--white);
+}
+p.endpoint {
+    margin: 0;
+}

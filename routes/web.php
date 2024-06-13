@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ApiDocsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\pages\DashboardController;
-use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\PreventBackHistoryMiddleware;
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');// Mostrar forumlario de Login
@@ -40,6 +41,8 @@ Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])-
         Route::get('/crear-producto', [ProductController::class, 'create'])->name('admin.products.create'); // Mostrar formulario para crear producto
         Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store'); // Guardar producto en la base de datos
         Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete'); // Eliminar producto
+
+        Route::get('/api-docs', [ApiDocsController::class, 'info'])->name('admin.api.docs'); // Documentación API
         
         Route::delete('/products/delete-image/{imgId}', [ProductController::class, 'deleteProductImage'])->name('admin.products.delete-image'); // Eliminar imagen de producto
     });

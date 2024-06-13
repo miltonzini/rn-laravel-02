@@ -50,6 +50,14 @@
             </a>
         </li>
 
+
+        <li class="nav-item {{ setActiveRoute(['admin.api.docs']) }}">
+            <a class="nav-link" href="{{ route('admin.api.docs')}}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>API</span>
+            </a>
+        </li>
+
         <hr class="sidebar-divider d-none d-md-block">
 
         <div class="text-center d-none d-md-inline">
