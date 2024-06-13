@@ -358,4 +358,18 @@ class ProductController extends Controller
         ]);
 
     }
+
+    public function search(Request $request) {
+        $search = $request->search;
+        $products = Product::where('title', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%")
+                    ->orWhereHas('tags', function($query) use ($search) {
+                        $query->where('tag', 'like', "%$search%");
+                    })
+                    ->paginate(20);
+        $productsCount = $products->total();
+        $scripts = ['products.js'];
+        return view('admin.products.index', compact('products', 'productsCount', 'scripts', 'search'));
+    }
+
 }

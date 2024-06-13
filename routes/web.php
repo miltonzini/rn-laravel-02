@@ -34,6 +34,7 @@ Route::middleware([AuthMiddleware::class, PreventBackHistoryMiddleware::class])-
         Route::delete('/categorias/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete'); // Eliminar categoría
         
         Route::get('/listado-productos', [ProductController::class, 'index'])->name('admin.products.index'); // Listar productos
+        Route::post('/listado-productos', [ProductController::class, 'search'])->name('admin.products.index'); // Buscar en el listado de productos
         Route::get('/editar-producto/{id}', [ProductController::class, 'edit'])->name('admin.products.edit'); // Mostrar formulario para editar producto
         Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update'); // Actualizar producto en la base de datos
         Route::get('/crear-producto', [ProductController::class, 'create'])->name('admin.products.create'); // Mostrar formulario para crear producto

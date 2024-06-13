@@ -16,22 +16,37 @@
 
                 <div class="container-fluid">
                     <div class="row">
-                        
-
-                        <div class="col-lg-9">
+                        <div class="col-md-9">
                             <h1 class="h3 mb-2 text-gray-800">Listado de productos</h1>
-                            @if (isset($productsCount))                 
+                            @if (isset($productsCount) && !isset($search))
                             <p class="mb-4">Total de productos: <span class="info-primary-soft">{{ $productsCount }}</span></p>                           
                             @endif
                         </div>
-
-                        <div class="col-lg-3">
+                        <div class="col-md-3">
                             <a href="{{ route('admin.products.create') }}" class="btn btn-primary float-right">Nuevo producto</a>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <form action="{{ route('admin.products.index') }}" method="post" class="search-form ">
+                                    @csrf
+                                    <div class="input-group input-group-sm" style="">
+                                        <input type="text" name="search" class="form-control float-right" placeholder="Buscar producto" value="{{ isset($search) ? $search : '' }}">
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                        @if (isset($search) && isset($productsCount))
+                        <p class="mb-4">Resultados: <span class="info-primary-soft">{{ $productsCount }}</span></p>
+                        @endif
+
                         @if (!empty($products) && count($products) > 0 )
                             <div class="table-responsive">
                                 <table class="table table-bordered" width="100%" cellspacing="0">
