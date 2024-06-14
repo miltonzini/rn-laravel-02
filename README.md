@@ -24,15 +24,13 @@
      ```
 
 6. **Ejecutar los seeders**
-   - Ejecutar los siguientes comandos para llenar la base de datos con datos de prueba:
+   - Ejecutar los seeders para agregar datos de muestra a la base de datos:
      ```bash
-     php artisan db:seed --class=UsersTableSeeder
-     php artisan db:seed --class=CategoriesTableSeeder
-     php artisan db:seed --class=ProductsTableSeeder
+     php artisan db:seed
      ```
 
 7. **Abrir el proyecto en el navegador**
-   - Abre tu navegador y accede al proyecto utilizando la URL correspondiente a tu configuración local (por ejemplo, `http://localhost/rn-laravel-02`).
+   - Abrir el navegador y acceder al proyecto utilizando la URL correspondiente a la configuración local (por ejemplo, `http://localhost/rn-laravel-02`).
 
 ## Credenciales de prueba
 - **Usuario:** admin@admin.com
