@@ -42,6 +42,8 @@
     # Sb-admin-2 Overrides
 ///////////////////////////////////////////////////////////*/
 
+ul.sidebar {transition: all 300ms ease;}
+
 .sidebar .sidebar-brand {
     height: fit-content!important;
     line-height: 1rem;
